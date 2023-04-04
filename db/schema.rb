@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_04_165709) do
+ActiveRecord::Schema.define(version: 2023_04_04_191913) do
 
   create_table "deliveries", force: :cascade do |t|
     t.string "delivery_status"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2023_04_04_165709) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "username"
     t.string "email"
     t.string "phone_number"
     t.string "password_digest"
