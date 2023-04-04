@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   
+  resources :reviews
+  resources :order_items
+  resources :deliveries
+  resources :orders
+  resources :menu_items
+  resources :restaurants
+  resources :users
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
