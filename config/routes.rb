@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :order_items
   resources :deliveries, only: [:index, :show, :destroy]
   resources :orders
-  resources :menu_items
+  resources :menu_items, only: [:index, :show, :destroy]
   resources :restaurants
   resources :users
   # Routing logic: fallback requests for React Router.
