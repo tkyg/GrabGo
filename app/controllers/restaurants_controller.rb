@@ -12,15 +12,16 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    restaurant = Restaurant.new(restaurant_params)
-    restaurant.save 
-    render json: restaurant, status: :created 
-  rescue ActiveRecord::RecordNotFound => error
-    render json: {message: error.message}, status: :not_found
+    @restaurant = Restaurant.create(restaurant_params)
+    if @restaurant.valid?
+      render json: @restaurant, status: :created
+    else
+      render json: { errors: @restaurant.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def update 
-    restaurant = Restaurant.new(restaurant_params)
+    restaurant = Restaurant.find(params[:id])
     restaurant.update(restaurant_params)
     render json: restaurant, status: :ok
   rescue ActiveRecord::RecordNotFound => error
