@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   resources :reviews
   resources :order_items
-  resources :deliveries
+  resources :deliveries, only: [:index, :show, :destroy]
   resources :orders
   resources :menu_items
   resources :restaurants
