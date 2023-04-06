@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 function App() {
 
-  const reduxState = useSelector((store) => store)
+  const reduxState = useSelector((store) => store.restaurantsReducer)
   console.log(reduxState)
   return (
     <div className="App">

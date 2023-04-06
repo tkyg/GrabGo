@@ -2,13 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { composeWithDevTools } from "redux-devtools-extension";
 import reportWebVitals from './reportWebVitals';
 
-import restaurantsReducer from './components/reducers/restaurantsReducer';
+import rootReducer from './components/reducers/index';
 
-const store = createStore(restaurantsReducer)
+const composeEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
+const store = createStore(
+  rootReducer, 
+  composeEnhancer
+  );
 
 ReactDOM.render(
   <React.StrictMode>
