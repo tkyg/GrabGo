@@ -6,11 +6,9 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reportWebVitals from './reportWebVitals';
 
-const reducer = () => {
-  return []
-}
+import restaurantsReducer from './components/reducers/restaurantsReducer';
 
-const store = createStore(reducer)
+const store = createStore(restaurantsReducer)
 
 ReactDOM.render(
   <React.StrictMode>
