@@ -11,6 +11,7 @@ import reportWebVitals from './reportWebVitals';
 import rootReducer from './components/reducers/index';
 
 const composeEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
+
 const store = createStore(
   rootReducer, 
   composeEnhancer
