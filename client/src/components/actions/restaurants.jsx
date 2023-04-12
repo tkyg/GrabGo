@@ -23,4 +23,16 @@ export const loadSingleRestaurant = (id) => {
       })
     }
   }
+
+  export const filterRestaurantsByZipcode = (zipcode) => {
+    return dispatch => {
+      fetch(`/restaurants/zipcode/${zipcode}`)
+      .then(response => response.json())
+      .then(data => {
+        const action = {type: 'FILTER_RESTAURANTS_BY_ZIPCODE',
+        payload: data}
+        dispatch(action);
+      })
+    };
+  };
   

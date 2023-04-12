@@ -14,6 +14,12 @@ const restaurantsReducer = (state=initialState, action) => {
       return { ...state, singleRestaurant: action.payload };
       // return action.payload;
 
+    case 'FILTER_RESTAURANTS_BY_ZIPCODE':
+      return {
+        ...state,
+        restaurants: action.payload,
+      };
+
     default:
       return state
   }
