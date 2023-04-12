@@ -24,9 +24,11 @@ User.destroy_all
   if user.save
     restaurant = Restaurant.new(
       name: Faker::Restaurant.name,
-      address: Faker::Address.street_address,
-      phone_number: Faker::PhoneNumber.cell_phone,
-      zip_code: Faker::Address.zip_code,
+      address: Faker::Address.street_address + ', ' + Faker::Address.street_name,
+      zip_code: Faker::Number.number(digits: 5),
+      phone_number: Faker::PhoneNumber.phone_number,
+      category: Faker::Restaurant.type,
+      description: Faker::Restaurant.description,
       user: user
     )
 
@@ -35,7 +37,7 @@ User.destroy_all
         restaurant.menu_items.create(
           name: Faker::Food.dish,
           description: Faker::Food.description,
-          price: Faker::Number.decimal(l_digits: 2, r_digits: 2),
+          price: Faker::Number.between(from: 500, to: 1900) / 100.0,
           category: Faker::Food.ethnic_category,
           is_vegetarian: Faker::Boolean.boolean,
           is_gluten_free: Faker::Boolean.boolean,

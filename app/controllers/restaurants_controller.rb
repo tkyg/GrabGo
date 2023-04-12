@@ -21,6 +21,21 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  # def filter_by_zipcode
+  #   @restaurants = Restaurant.where(zip_code: params[:zipcode])
+  #   render json: @restaurants, status: :ok
+  # rescue ActiveRecord::RecordNotFound => error
+  #   render json: {message: error.message}, status: :not_found
+  # end
+
+  def filter_by_zipcode
+    zipcode = params[:zipcode].slice(0, 4) + '%'
+    @restaurants = Restaurant.where('zip_code LIKE ?', zipcode)
+    render json: @restaurants, status: :ok
+  rescue ActiveRecord::RecordNotFound => error
+    render json: {message: error.message}, status: :not_found
+  end
+
   def update 
     restaurant = Restaurant.find(params[:id])
     restaurant.update(restaurant_params)

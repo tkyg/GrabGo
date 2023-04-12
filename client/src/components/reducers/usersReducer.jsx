@@ -7,10 +7,11 @@ const initialState = {
 }
 
 const usersReducer = (state=initialState, action) => {
-  return (
-    state
-    // <div>usersReducer</div>
-  )
+  switch(action.type){
+    
+    default:
+      return state;
+  }
 }
 
 export default usersReducer

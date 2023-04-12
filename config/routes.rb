@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :restaurants, only: [:index, :show, :create, :update, :destroy]
   resources :users
 
+  get 'restaurants/zipcode/:zipcode', to: 'restaurants#filter_by_zipcode', as: 'filter_restaurants_by_zipcode'
+
   post "/login", to: 'sessions#create'
   delete "/logout", to: 'sessions#destroy'
 
