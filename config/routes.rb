@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :order_items, only: [:index, :show, :create, :update, :destroy]
   resources :deliveries, only: [:index, :show, :destroy]
   resources :orders, only: [:index, :show, :create, :update, :destroy]
-  resources :menu_items, only: [:index, :show, :destroy]
+  resources :menu_items, only: [:index, :show, :create, :update, :destroy]
   resources :restaurants, only: [:index, :show, :create, :update, :destroy]
   resources :users
 

@@ -1,6 +1,12 @@
-const initialState = { restaurantLoading: true, restaurants: [] }
+// const initialState = { restaurantLoading: true, restaurants: [] }
+const initialState = {
+  restaurantLoading: true,
+  restaurants: [],
+  singleRestaurant: null
+};
 
 const restaurantsReducer = (state=initialState, action) => {
+  console.log("Action dispatched:", action.type);
   switch(action.type){
     case "LOAD_RESTAURANTS":
       // return action.payload;
@@ -9,20 +15,50 @@ const restaurantsReducer = (state=initialState, action) => {
         restaurantLoading: false,
         restaurants: action.payload
       }
+  //   case "LOAD_RESTAURANTS":
+  // console.log("restaurants before loading: ", state.restaurants);
+  // const newState = {
+  //   ...state, 
+  //   restaurantLoading: false,
+  //   restaurants: action.payload
+  // }
+  // console.log("restaurants after loading: ", newState.restaurants);
+  // return newState;
 
     case "LOAD_SINGLE_RESTAURANT":
-      return { ...state, singleRestaurant: action.payload };
-      // return action.payload;
-
-    case 'FILTER_RESTAURANTS_BY_ZIPCODE':
-      return {
-        ...state,
-        restaurants: action.payload,
+      return { 
+        ...state, 
+        singleRestaurant: action.payload 
       };
 
-    default:
-      return state
-  }
-}
 
-export default restaurantsReducer;
+    case "ADD_RESTAURANT":
+      return {
+        ...state,
+        restaurants: [...state.restaurants, action.payload]
+      };
+    
+    case "DELETE_RESTAURANT":
+      return {
+        ...state,
+        restaurants: state.restaurants.filter(
+          (restaurant) => restaurant.id !== action.payload
+        ),
+      };
+
+      case "EDIT_RESTAURANT":
+        const updatedRestaurants = state.restaurants.map(restaurant => {
+          if(action.payload.id === restaurant.id) {
+            return action.payload
+          } else {
+          return restaurant
+          }
+        })
+        return updatedRestaurants
+
+        default:
+          return state
+        }
+      }
+      
+      export default restaurantsReducer;

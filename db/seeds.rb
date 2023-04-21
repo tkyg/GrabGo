@@ -13,7 +13,7 @@ Restaurant.destroy_all
 MenuItem.destroy_all
 User.destroy_all
 
-50.times do
+10.times do
   user = User.new(
     username: Faker::Internet.username,
     email: Faker::Internet.email,

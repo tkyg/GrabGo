@@ -8,26 +8,44 @@ import Login from './components/authentication/Login'
 import RestaurantList from './components/restaurant/RestaurantList';
 import RestaurantDetails from './components/restaurant/RestaurantDetails';
 import RestaurantEdit from './components/restaurant/RestaurantEdit';
-// import { useDispatch } from 'react-redux';
-// import { useEffect } from 'react';
-// import { loadRestaurants } from './components/actions/restaurants';
+import RestaurantForm from './components/restaurant/RestaurantForm';
+import MenuItemsForm from './components/menuItems/MenuItemsForm';
+import Errors from './components/errors/Errors';
+import { loadCurrentUser, loadUsers } from './components/actions/userActions';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import MenuItemsList from './components/menuItems/MenuItemsList';
+// import { loadRestaurants } from './components/actions/restaurantActions';
+
 
 function App() {
+  const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    dispatch(loadUsers(setLoading))
+    dispatch(loadCurrentUser(setLoading))
+  }, [dispatch])
 
   return (
     <div className="App">
       <Router>
         <NavBar />
-        <Routes>
-          <Route exact path="/" element={<Home />}/>
-          <Route exact path="/signup" element={<Signup />}/>
-          <Route exact path="/login" element={<Login />}/>
-          <Route path="/restaurants" element={<RestaurantList />}/>
-          <Route path="/restaurants/:id/edit" element={<RestaurantEdit />}/>
-          <Route path="/restaurants/:id" element={<RestaurantDetails />}/>
-
-        </Routes>
-
+        <Errors />
+        {
+          loading ? <h1>Loading...</h1>:
+          <Routes>
+            <Route exact path="/" element={ <Home /> }/>
+            <Route exact path="/signup" element={ <Signup loading = { loading }/> }/>
+            <Route exact path="/login" element={ <Login loading = { loading }/> }/>
+            <Route path="/restaurants" element={ <RestaurantList loading = { loading }/> }/>
+            <Route path="/restaurants/new" element={ <RestaurantForm loading = { loading }/> }/>
+            <Route path="/restaurants/:id" element={ <RestaurantDetails loading = { loading }/> }/>
+            <Route path="/restaurants/:id/edit" element={ <RestaurantEdit loading = { loading }/> }/>
+            <Route path="/menu_items" element={ <MenuItemsList loading = { loading }/> }/>
+            <Route path="/menu_items/new" element={ <MenuItemsForm loading = { loading }/> }/>
+          </Routes>
+          }
       </Router>
     </div>
   );

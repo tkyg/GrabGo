@@ -1,36 +1,23 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
-import { filterRestaurantsByZipcode } from '../actions/restaurants'
-import { useNavigate } from 'react-router-dom'
-// starting my change
 
+// const Home = () => {
+
+//   return (
+//     <div>
+//       <h1>Welcome to GrubGo</h1>
+//       <h3>Enter Zip Code to Search for Participating Restaurants Near You</h3>
+//     </div>
+//   )
+// }
+
+// export default Home
+
+import React from 'react'
 
 const Home = () => {
-
-  const [zipcode, setZipcode] = useState('');
-  const dispatch = useDispatch();
-  const navigate = useNavigate()
-
-  const restaurants = useSelector(store => store.restaurantsReducer.restaurants)
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    dispatch(filterRestaurantsByZipcode(zipcode));
-    navigate(`/restaurants?zipcode=${zipcode}`)
-  };
-
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={zipcode}
-          onChange={(event) => setZipcode(event.target.value)}
-          placeholder="Enter a zip code"
-        />
-        <button type="submit">Search</button>
-      </form>
+      <h1>Welcome to GrubGo</h1>
+      <h3>Enter Zip Code to Search for Participating Restaurants Near You</h3>
     </div>
   )
 }

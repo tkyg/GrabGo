@@ -1,39 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { loadRestaurants, filterRestaurantsByZipcode } from '../actions/restaurants';
-import RestaurantCard from './RestaurantCard';
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import RestaurantCard from './RestaurantCard'
+import { useDispatch } from 'react-redux'
+import { loadRestaurants } from '../actions/restaurantActions'
+import { useNavigate } from 'react-router-dom'
 
-const RestaurantList = () => {
-  const [zipcode, setZipcode] = useState('');
+const RestaurantList = ({ loading }) => {
   const dispatch = useDispatch();
-  const location = useLocation();
+  const navigate = useNavigate()
+  const { loggedIn } = useSelector(store => store.usersReducer)
+  const restaurants = useSelector(store => store.restaurantsReducer.restaurants)
+  console.log(restaurants)
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const queryZipcode = searchParams.get('zipcode');
-    if (queryZipcode) {
-      setZipcode(queryZipcode);
-      dispatch(filterRestaurantsByZipcode(queryZipcode));
-    } else {
-      dispatch(loadRestaurants())
+    if(!loading && !loggedIn) {
+      navigate('/login')
     }
-  }, [location.search, dispatch]);
+    dispatch(loadRestaurants())
+  }, [dispatch, loading, loggedIn, navigate])
 
-  const restaurants = useSelector(
-    (store) => store.restaurantsReducer.restaurants
-  );
+  // const restaurants = useSelector(store => store.restaurantsReducer.restaurants)
+
+  // april 19
+
+  // const restaurantList = restaurants.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant}/>)
+
+  const restaurantList = restaurants && restaurants.length > 0
+  ? restaurants.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant}/>)
+  : null;
   
-  const restaurantList = restaurants.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant}/>)
-
   return (
     <div>
-      {/* <h1>Restaurants with Zip Code: {zipcode}</h1> */}
       {restaurantList}
     </div>
-  );
-};
+  )
+}
 
-export default RestaurantList;
-
+export default RestaurantList
 

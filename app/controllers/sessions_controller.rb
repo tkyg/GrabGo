@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
   end
   
   def destroy
+    puts "Destroying session..."
     session.delete :user_id
   end
 end
