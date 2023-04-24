@@ -11,8 +11,17 @@ class SessionsController < ApplicationController
     end
   end
   
+  # def destroy
+  #   puts "Destroying session..."
+  #   session.delete :user_id
+  # end
+
   def destroy
-    puts "Destroying session..."
-    session.delete :user_id
+    if session[:user_id]
+      session.delete :user_id
+      render json: { message: "Logged out successfully" }, status: :ok
+    else
+      render json: { errors: ["You are not logged in"] }, status: :unprocessable_entity
+    end
   end
 end

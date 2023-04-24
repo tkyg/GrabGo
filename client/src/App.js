@@ -10,6 +10,7 @@ import RestaurantDetails from './components/restaurant/RestaurantDetails';
 import RestaurantEdit from './components/restaurant/RestaurantEdit';
 import RestaurantForm from './components/restaurant/RestaurantForm';
 import MenuItemsForm from './components/menuItems/MenuItemsForm';
+import MenuItemsEdit from './components/menuItems/MenuItemsEdit'
 import Errors from './components/errors/Errors';
 import { loadCurrentUser, loadUsers } from './components/actions/userActions';
 import { useDispatch } from 'react-redux';
@@ -44,6 +45,7 @@ function App() {
             <Route path="/restaurants/:id/edit" element={ <RestaurantEdit loading = { loading }/> }/>
             <Route path="/menu_items" element={ <MenuItemsList loading = { loading }/> }/>
             <Route path="/menu_items/new" element={ <MenuItemsForm loading = { loading }/> }/>
+            <Route path="/menu_items/:id/edit" element={ <MenuItemsEdit loading = { loading }/> }/>
           </Routes>
           }
       </Router>

@@ -8,6 +8,7 @@ const initialState = {
 const restaurantsReducer = (state=initialState, action) => {
   console.log("Action dispatched:", action.type);
   switch(action.type){
+
     case "LOAD_RESTAURANTS":
       // return action.payload;
       return {
@@ -15,15 +16,6 @@ const restaurantsReducer = (state=initialState, action) => {
         restaurantLoading: false,
         restaurants: action.payload
       }
-  //   case "LOAD_RESTAURANTS":
-  // console.log("restaurants before loading: ", state.restaurants);
-  // const newState = {
-  //   ...state, 
-  //   restaurantLoading: false,
-  //   restaurants: action.payload
-  // }
-  // console.log("restaurants after loading: ", newState.restaurants);
-  // return newState;
 
     case "LOAD_SINGLE_RESTAURANT":
       return { 
@@ -39,26 +31,40 @@ const restaurantsReducer = (state=initialState, action) => {
       };
     
     case "DELETE_RESTAURANT":
+      const updatedRestaurantsAfterDelete = state.restaurants.filter(
+        (restaurant) => restaurant.id !== action.payload
+      );
       return {
         ...state,
-        restaurants: state.restaurants.filter(
-          (restaurant) => restaurant.id !== action.payload
-        ),
+        restaurants: updatedRestaurantsAfterDelete
       };
 
-      case "EDIT_RESTAURANT":
-        const updatedRestaurants = state.restaurants.map(restaurant => {
-          if(action.payload.id === restaurant.id) {
-            return action.payload
-          } else {
+    case "EDIT_RESTAURANT":
+      const updatedRestaurants = state.restaurants.map(restaurant => {
+        if(action.payload.id === restaurant.id) {
+          return action.payload
+        } else {
           return restaurant
-          }
-        })
-        return updatedRestaurants
-
-        default:
-          return state
         }
+      })
+      return {
+        ...state,
+        restaurants: updatedRestaurants
       }
+
+    default:
+      return state
+    }
+  }
       
-      export default restaurantsReducer;
+export default restaurantsReducer;
+
+        //   case "LOAD_RESTAURANTS":
+  // console.log("restaurants before loading: ", state.restaurants);
+  // const newState = {
+  //   ...state, 
+  //   restaurantLoading: false,
+  //   restaurants: action.payload
+  // }
+  // console.log("restaurants after loading: ", newState.restaurants);
+  // return newState;

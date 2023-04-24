@@ -4,7 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { editRestaurant } from '../actions/restaurantActions'
 import { clearErrors } from '../actions/errorActions'
 
-
 const RestaurantEdit = ({ loading }) => {
   
   const initialState = {
@@ -16,7 +15,6 @@ const RestaurantEdit = ({ loading }) => {
     description: ""
   }
   
-
   const { loggedIn, currentUser } = useSelector(store => store.usersReducer)
   const restaurants = useSelector(store => store.restaurantsReducer.restaurants)
   const [ formData, setFormData ] = useState(initialState)

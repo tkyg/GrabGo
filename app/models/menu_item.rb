@@ -5,4 +5,6 @@ class MenuItem < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
+  validates :price, numericality: { greater_than_or_equal_to: 0.50 }
+  validates :category, presence: true
 end

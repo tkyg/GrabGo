@@ -29,20 +29,17 @@ const MenuItemsForm = ({ loading, restaurantId }) => {
     }
   }, [loading, loggedIn, navigate, dispatch])
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
-    console.log(value)
     setFormData({
       ...formData,
-      // [name]: value
       [name]: type === 'checkbox' ? checked : value,
     })
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = e => {
+    e.preventDefault()
     dispatch(addMenuItems(formData, navigate, restaurantId))
-    setFormData(initialState)
   }
 
   return (
@@ -67,7 +64,7 @@ const MenuItemsForm = ({ loading, restaurantId }) => {
             <textarea
               id="description"
               name='description'
-              placeholder='description'
+              placeholder='Description'
               value={ formData.description }
               onChange={ handleChange }
             />
@@ -89,7 +86,7 @@ const MenuItemsForm = ({ loading, restaurantId }) => {
               type="text"
               id="category"
               name='category'
-              placeholder='category'
+              placeholder='Category'
               value={ formData.category }
               onChange={ handleChange }
             />
@@ -100,8 +97,7 @@ const MenuItemsForm = ({ loading, restaurantId }) => {
               type="checkbox"
               id="isVegetarian"
               name='isVegetarian'
-              // checked={ formData.isVegetarian}
-              defaultChecked={formData.is_vegetarian}
+              checked={formData.is_vegetarian}
               onChange={ handleChange }
             />
           </div>
@@ -111,7 +107,7 @@ const MenuItemsForm = ({ loading, restaurantId }) => {
               type="checkbox"
               id="isGlutenFree"
               name='isGlutenFree'
-              defaultChecked={formData.is_gluten_free}
+              checked={formData.is_gluten_free}
               onChange={ handleChange }
             />
           </div>
@@ -124,16 +120,3 @@ const MenuItemsForm = ({ loading, restaurantId }) => {
 }
 
 export default MenuItemsForm
-
-// create_table "menu_items", force: :cascade do |t|
-// t.string "name"
-// t.text "description"
-// t.decimal "price", precision: 4, scale: 2
-// t.string "category"
-// t.boolean "is_vegetarian"
-// t.boolean "is_gluten_free"
-// t.integer "restaurant_id", null: false
-// t.datetime "created_at", precision: 6, null: false
-// t.datetime "updated_at", precision: 6, null: false
-// t.index ["restaurant_id"], name: "index_menu_items_on_restaurant_id"
-// end

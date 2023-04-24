@@ -6,6 +6,7 @@ const initialState = {
 }
 
 const menuItemsReducer = (state = initialState, action) => {
+  console.log("Action dispatched:", action.type);
   switch(action.type){
     case "LOAD_MENU_ITEMS":
       // return action.payload;
@@ -19,14 +20,6 @@ const menuItemsReducer = (state = initialState, action) => {
       return { ...state, singleMenuItem: action.payload };
 
     case "EDIT_MENU_ITEM":
-      // const updatedMenuItems = state.map(menuItem => {
-      //   if(action.payload.id === blog.id) {
-      //     return action.payload;
-      //   } else {
-      //     return menuItem;
-      //   }
-      // })
-      // return updatedMenuItems;
       const updatedMenuItemIndex = state.menuItems.findIndex(
         (menuItem) => menuItem.id === action.payload.id
       );
@@ -37,69 +30,36 @@ const menuItemsReducer = (state = initialState, action) => {
         menuItems: updatedMenuItems,
       };
 
-    // case "ADD_MENU_ITEM":
-    //   return {
-    //     ...state,
-    //     menuItems: [...state.menuItems, action.payload],
-    //   };
-    // case "ADD_MENU_ITEM":
-    //   const restaurantId = action.payload.restaurant_id;
-    //   const updatedRestaurants = state.restaurants.map((restaurant) => {
-    //     if (restaurant.id === restaurantId) {
-    //       return {
-    //         ...restaurant,
-    //         menu_items: [...restaurant.menu_items, action.payload],
-    //       };
-    //     } else {
-    //     return restaurant;
-    //     }
-    //   });
-    //   return {
-    //     ...state,
-    //     restaurants: updatedRestaurants,
-    //     menuItems: [...state.menuItems, action.payload],
-    //   };
-
-
-    case "ADD_MENU_ITEM":
-      const { menuItem, restaurant_id } = action.payload;
-      const menuItems = [...state.menuItems, menuItem];
-      const restaurants = state.restaurants.map((restaurant) => {
+      case "ADD_MENU_ITEM":
+      const { restaurant_id, ...newMenuItem } = action.payload;
+      const updatedRestaurants = state.restaurants.map((restaurant) => {
         if (restaurant.id === restaurant_id) {
-          const menu_items = [...restaurant.menu_items, menuItem];
-          return { ...restaurant, menu_items };
+          return {
+            ...restaurant,
+            menuItems: [...restaurant.menuItems, newMenuItem],
+          };
         } else {
           return restaurant;
         }
       });
-      return { ...state, menuItems, restaurants };
-    
-    case "DELETE_MENU_ITEM":
-      // return state.filter(menuItem => menuItem.id !== action.payload);
-      const filteredMenuItems = state.menuItems.filter(
-        (menuItem) => menuItem.id !== action.payload
-      );
       return {
         ...state,
-        menuItems: filteredMenuItems,
+        restaurants: updatedRestaurants,
       };
+   
 
-      case "ADD_MENU_ITEMS_SUCCESS":
-        return {
-          ...state,
-          restaurants: state.restaurants.map((restaurant) =>
-            restaurant.id === action.payload.restaurantId
-              ? {
-                  ...restaurant,
-                  menuItems: [...restaurant.menuItems, action.payload.menuItem],
-                }
-              : restaurant
-          ),
-        };
-
+      case "DELETE_MENU_ITEM":
+        const filteredMenuItems = state.menuItems.filter(
+          (menuItem) => menuItem.id !== action.payload
+          );
+          return {
+            ...state,
+            menuItems: filteredMenuItems,
+          };
+            
     default:
       return state
+    }
   }
-}
-
+          
 export default menuItemsReducer;

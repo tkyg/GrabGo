@@ -43,7 +43,7 @@ class MenuItemsController < ApplicationController
   private
 
   def menuItem_params
-    params.require(:menuItem).permit(:name, :description, :price, :category, :is_vegetarian, :is_gluten_free, :restaurant_id)
+    params.require(:menu_item).permit(:name, :description, :price, :category, :is_vegetarian, :is_gluten_free, :restaurant_id)
   end
 
 end

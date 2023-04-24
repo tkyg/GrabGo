@@ -17,7 +17,6 @@ export const loadRestaurants = () => {
 
 // this loads single restaurant
 export const loadSingleRestaurant = (restaurantId) => {
-  console.log('Loading single restaurant');
   return dispatch => {
   fetch(`/restaurants/${restaurantId}`)
     .then(response => response.json())
@@ -28,21 +27,7 @@ export const loadSingleRestaurant = (restaurantId) => {
   }
 }
 
-  // changes made 4/12
 
-  // export const filterRestaurantsByZipcode = (zipcode) => {
-  //   return dispatch => {
-  //     fetch(`/restaurants/zipcode/${zipcode}`)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       const action = {type: 'FILTER_RESTAURANTS_BY_ZIPCODE',
-  //       payload: data}
-  //       dispatch(action);
-  //     })
-  //   };
-  // };
-  
-  // this allows me to add a restaurant
 export const addRestaurant = (formData, navigate) => {
   return dispatch => {
     fetch('/restaurants', {
@@ -97,19 +82,37 @@ export const editRestaurant = (id, formData, navigate) => {
   }
 }
 
-export const deleteRestaurant = (id) => {
+export const deleteRestaurant = (id, navigate) => {
   return dispatch => {
     fetch(`/restaurants/${id}`, {
       method: "DELETE"
     })
     .then(response => {
+      console.log(response)
       if(response.ok) {
         const action = {
           type: "DELETE_RESTAURANT",
           payload: id
         }
         dispatch(action)
+        navigate('/restaurants')
       }
     })
   }
 }
+
+  // changes made 4/12
+
+  // export const filterRestaurantsByZipcode = (zipcode) => {
+  //   return dispatch => {
+  //     fetch(`/restaurants/zipcode/${zipcode}`)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       const action = {type: 'FILTER_RESTAURANTS_BY_ZIPCODE',
+  //       payload: data}
+  //       dispatch(action);
+  //     })
+  //   };
+  // };
+  
+  // this allows me to add a restaurant

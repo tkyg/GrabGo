@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { clearErrors } from '../actions/errorActions'
 import { useDispatch, useSelector } from 'react-redux';
 import { signupUser } from '../actions/userActions';
-// import './signup.css'
+import '../../styles/signup.css'
 
 const Signup = ({ loading }) => {
   const { loggedIn } = useSelector(store => store.usersReducer );
@@ -30,61 +30,25 @@ const Signup = ({ loading }) => {
     const user = { username, password, email, role }
     dispatch(signupUser(user, navigate))
   }
-  // useEffect(() => {
-  //   fetch('/me')
-  //   .then(resp => resp.json())
-  //   .then(data => {
-  //     setUser(data)
-  //     if (data.error) {
-  //       setLoggedIn(false)
-  //     } else {
-  //       setLoggedIn(true)
-  //     }
-  //   })
-  // }, [])
-
-  // const handleSubmit = e => {
-  //   e.preventDefault()
-  //   fetch('/signup', {
-  //     method: "POST",
-  //     headers: { 'Content-Type': 'application/json'},
-  //     body: JSON.stringify({
-  //       username: username, 
-  //       password: password,
-  //       email: email,
-  //       role: role
-  //     })
-  //   })
-  //   .then(resp => resp.json())
-  //   .then(user => {
-  //     if(!user.errors) {
-  //       setUser(user)
-  //       navigate('/')
-  //     } else {
-  //       setUsername('')
-  //       setPassword('')
-  //       const errorList = user.errors.map((e, index) => <li key={index}>{e}</li>)
-  //       setErrorsList(errorList)
-  //     }
-  //   })
-  // }
 
   return (
-    <form onSubmit={ handleSubmit }>
-      <h1>Create Account</h1>
-      <div>
-        <label htmlFor="username">Username: </label>
-        <input
-          type="text" 
-          name="username" 
-          id="username" 
-          className="signupInput"
-          placeholder='Choose a username..'
-          value={ username } 
-          onChange={ e => setUsername(e.target.value)}
-          autoFocus={ true }
-        />  
-      </div>
+    <div className='signup'>
+      <span className='signupTitle'>CREATE ACCOUNT</span>
+    
+      <form className='signupForm' onSubmit={ handleSubmit }>
+        <div>
+          <label htmlFor="username">Username: </label>
+          <input
+            type="text" 
+            name="username" 
+            id="username" 
+            className="signupInput"
+            placeholder='Choose a username..'
+            value={ username } 
+            onChange={ e => setUsername(e.target.value)}
+            autoFocus={ true }
+          />  
+        </div>
       <div>
         <label htmlFor="password">Password: </label>
         <input
@@ -125,7 +89,47 @@ const Signup = ({ loading }) => {
       </div>
         <input className="signupButton" type="submit" value="Create Account"/>
       </form>
+    </div>
   )
 }
 
 export default Signup
+
+  // useEffect(() => {
+  //   fetch('/me')
+  //   .then(resp => resp.json())
+  //   .then(data => {
+  //     setUser(data)
+  //     if (data.error) {
+  //       setLoggedIn(false)
+  //     } else {
+  //       setLoggedIn(true)
+  //     }
+  //   })
+  // }, [])
+
+  // const handleSubmit = e => {
+  //   e.preventDefault()
+  //   fetch('/signup', {
+  //     method: "POST",
+  //     headers: { 'Content-Type': 'application/json'},
+  //     body: JSON.stringify({
+  //       username: username, 
+  //       password: password,
+  //       email: email,
+  //       role: role
+  //     })
+  //   })
+  //   .then(resp => resp.json())
+  //   .then(user => {
+  //     if(!user.errors) {
+  //       setUser(user)
+  //       navigate('/')
+  //     } else {
+  //       setUsername('')
+  //       setPassword('')
+  //       const errorList = user.errors.map((e, index) => <li key={index}>{e}</li>)
+  //       setErrorsList(errorList)
+  //     }
+  //   })
+  // }

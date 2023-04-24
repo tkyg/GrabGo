@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
-import { loadSingleRestaurant } from '../actions/restaurantActions'
+import { deleteRestaurant, loadSingleRestaurant } from '../actions/restaurantActions'
 import MenuItemsForm from '../menuItems/MenuItemsForm';
 import { addMenuItems } from '../actions/menuItemsActions';
 import MenuItemsList from '../menuItems/MenuItemsList';
@@ -30,18 +30,13 @@ const RestaurantDetails = ({ loading }) => {
 
   // const isOwner = singleRestaurant && singleRestaurant.user.id && currentUser && singleRestaurant.user.id === currentUser.id;
   const isOwner = singleRestaurant && singleRestaurant.user && singleRestaurant.user.id && currentUser && singleRestaurant.user.id === currentUser.id;
-  // const single = singleRestaurant.user.id
-  console.log(singleRestaurant)
-  // console.log(single)
-  console.log(isOwner)
+
+  const handleDelete = () => {
+    console.log(singleRestaurant.id)
+    dispatch(deleteRestaurant(singleRestaurant.id, navigate))
+  }
  
   // April 20th edit:
-
-  const handleMenuAddition = (newMenuItem) => {
-    const updatedMenuItems = [...singleRestaurant.menu_items, newMenuItem];
-    const updatedSingleRestaurant = { ...singleRestaurant, menu_items: updatedMenuItems };
-    dispatch(addMenuItems(updatedSingleRestaurant));
-  };
 
   return (
     <>
@@ -57,13 +52,20 @@ const RestaurantDetails = ({ loading }) => {
             <p>
             {loggedIn && isOwner && (
               <button onClick={() => navigate(`/restaurants/${singleRestaurant.id}/edit`, { restaurant: singleRestaurant })}>Edit</button>
-            )}
+              )}
             </p>
+              <p>
+              {loggedIn && isOwner && (
+                <button onClick={handleDelete}>Delete Restaurant</button>
+              )}
+              </p>
           </div>
           <br/>
           <div>
             <h2>Menu</h2>
-            <button onClick={() => navigate('/menu_items/new')}>Add Menu</button>
+            {loggedIn && isOwner && (
+              <NavLink to={'/menu_items'}>Update Menu</NavLink>
+            )}
             {singleRestaurant.menu_items.map((menuItem) => (
               <div key={menuItem.id}>
                 <h3>{menuItem.name} - ${menuItem.price}</h3>

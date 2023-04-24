@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  skip_before_action :authenticate_user, only: [:index, :create]
+  skip_before_action :authenticate_user, only: [:index, :create, :destroy]
   
   def index
     render json: Restaurant.all, status: :ok
@@ -33,10 +33,15 @@ class RestaurantsController < ApplicationController
 
   def destroy 
     restaurant = Restaurant.find(params[:id])
-    restaurant.destroy
-    head :no_content
-  rescue ActiveRecord::RecordNotFound => error
-    render json: { message: error.message }, status: :not_found
+    if restaurant
+      restaurant.orders.destroy_all
+    restaurant.reviews.destroy_all
+    restaurant.menu_items.destroy_all
+      restaurant.destroy
+      head :no_content
+    else
+      render json: { error: "Restaurant not found" }, status: :not_found
+    end
   end
 
   private

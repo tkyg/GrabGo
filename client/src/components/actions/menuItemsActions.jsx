@@ -25,6 +25,7 @@ export const loadSingleMenuItem = (id) => {
 
 export const editMenuItem = (id, formData, navigate) => {
   return dispatch => {
+    console.log(id)
     fetch(`/menu_items/${id}`, {
       method: "PATCH",
       headers: {
@@ -35,12 +36,10 @@ export const editMenuItem = (id, formData, navigate) => {
     })
     .then(response => response.json())
     .then(data => {
-      //dispatch action 
       dispatch({
         type: "EDIT_MENU_ITEM",
         payload: data
       })
-      navigate('/menu_items')
     })
   }
 }
@@ -55,23 +54,19 @@ export const addMenuItems = (formData, navigate, restaurantId) => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        menuItem: formData,
+        menu_item: formData,
         restaurant_id: restaurantId
       })
     })
     .then(response => response.json())
     .then(data => {
       if(data.errors){
-        // dispatch to ErrorsReducer for error handling
-        // setErrors(data.errors)
         const action = {
           type: "SET_ERRORS",
           payload: data.errors
         }
         dispatch(action)
       } else {
-        // addMenuItem(data)
-        // dispatch to MenuItemsReducer for adding a MenuItem
         const action = {
           type: "ADD_MENU_ITEM",
           payload: data
@@ -83,18 +78,20 @@ export const addMenuItems = (formData, navigate, restaurantId) => {
   }
 }
 
-export const deleteMenuItem = (id) => {
+export const deleteMenuItem = (id, navigate, restaurantId) => {
   return dispatch => {
     fetch(`/menu_items/${ id }`, {
-      method: "DELETE",
-      headers: {
-        "Accept": "application/json"
-      }
+      method: "DELETE"
     })
-    .then(response => response.json())
-    .then(data => {
-      const action = {type: "DELETE_MENU_ITEM", payload: data}
-      dispatch(action)
+    .then(response => {
+      if(response.ok) {
+        const action = {
+          type: "DELETE_MENU_ITEM",
+          payload: id
+        }
+        dispatch(action)
+        navigate(`/restaurants/${restaurantId}`)
+      }
     })
   }
 }

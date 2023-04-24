@@ -1,6 +1,10 @@
 class Review < ApplicationRecord
   belongs_to :user
   belongs_to :restaurant
+  has_many :order_items 
+  has_many :menu_items, through: :order_items
+  has_one :delivery
 
-  validates :comment, presence: true, length: { minimum: 5, maximum: 500 }
+  validates :delivery_status, presence: true
+  validates :delivery_address, presence: true
 end
