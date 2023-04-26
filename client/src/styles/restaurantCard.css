@@ -1,0 +1,36 @@
+.cardStyle{
+  box-shadow: 0 1px 0px 0 rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); */
+  max-width: 100%;
+  max-height: 800px;
+  /* margin: auto; */
+  margin: 30px 0;
+  padding: 10px;
+  text-align: left;
+  font-size: 14px;
+  border-radius: 5px;
+  font-family: 'Abel', sans-serif;
+  display: flex;
+  align-items: center;
+}
+
+.restaurantHeaderRight{
+  flex: 3;
+  margin-left: 180px;
+}
+
+.restaurantHeaderLeft{
+  flex: 3;
+}
+.restaurantHeaderCenter{
+  flex: 3;
+}
+/* display: flex;
+text-align: center;
+background-color: #f3f3f3;
+color: "#808080";
+border-radius: 15px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+margin: 20px 0;
+padding: 20px;
+flex-direction: row-reverse; */

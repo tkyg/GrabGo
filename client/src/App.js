@@ -16,6 +16,7 @@ import { loadCurrentUser, loadUsers } from './components/actions/userActions';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import MenuItemsList from './components/menuItems/MenuItemsList';
+import Footer from './components/footer/Footer';
 // import { loadRestaurants } from './components/actions/restaurantActions';
 
 
@@ -48,6 +49,7 @@ function App() {
             <Route path="/menu_items/:id/edit" element={ <MenuItemsEdit loading = { loading }/> }/>
           </Routes>
           }
+          <Footer />
       </Router>
     </div>
   );

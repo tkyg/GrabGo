@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { addRestaurant } from '../actions/restaurantActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors } from '../actions/errorActions'
+import "../../styles/restaurantForm.css" 
+
 
 const RestaurantForm = ({ loading }) => {
 
@@ -45,15 +47,17 @@ const RestaurantForm = ({ loading }) => {
   }
   
   return (
-    <div>
-      <h2>RestaurantForm</h2>
-      <form onSubmit={ handleSubmit }>
+    <div className="write">
+      <h3 className="writeTitle">Please Fill in you Restaurant Details</h3>
+      <br/>
+      <form className='writeForm' onSubmit={ handleSubmit }>
         <div>
           <input
             type="text"
             name="name"
             id="name"
             placeholder="Name"
+            className="writeInput"
             autoFocus={true}
             value={ formData.name }
             onChange={ handleChange }
@@ -63,6 +67,7 @@ const RestaurantForm = ({ loading }) => {
           <input
             type="text"
             name="address"
+            className="writeInput"
             placeholder="Address"
             value={ formData.address }
             onChange={ handleChange }
@@ -72,7 +77,8 @@ const RestaurantForm = ({ loading }) => {
           <input
             type="text"
             name="zip_code"
-            placeholder="Zip_Code"
+            placeholder="Zip Code"
+            className="writeInput"
             value={ formData.zip_code }
             onChange={ handleChange }
             />
@@ -81,7 +87,8 @@ const RestaurantForm = ({ loading }) => {
           <input
             type="text"
             name="phone_number"
-            placeholder="Phone_Number"
+            placeholder="Phone Number"
+            className="writeInput"
             value={ formData.phone_number }
             onChange={ handleChange }
             />
@@ -90,7 +97,8 @@ const RestaurantForm = ({ loading }) => {
           <input
             type="text"
             name="category"
-            placeholder="Category"         
+            placeholder="Category" 
+            className="writeInput"        
             value={ formData.category }
             onChange={ handleChange }
             />
@@ -99,12 +107,14 @@ const RestaurantForm = ({ loading }) => {
           <input
             type="text"
             name="description"
-            placeholder="Description"          
+            placeholder="Description" 
+            className="writeInput"          
             value={ formData.description }
             onChange={ handleChange }
             />
         </div>
-        <input type="submit" value="Create Restaurant" />
+        <br/>
+        <input className="writeSubmit" type="submit" value="Create Restaurant" />
       </form>
     </div>
   )

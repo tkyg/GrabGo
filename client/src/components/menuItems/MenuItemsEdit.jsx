@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { editMenuItem } from '../actions/menuItemsActions';
 import { clearErrors } from '../actions/errorActions';
+import "../../styles/restaurantForm.css" 
 
 const EditMenuItem = ({ loading }) => {
 
@@ -16,15 +17,15 @@ const EditMenuItem = ({ loading }) => {
   }
   
   const { id } = useParams();
-  const { loggedIn, currentUser } = useSelector(store => store.usersReducer)
+  const { loggedIn } = useSelector(store => store.usersReducer)
   const [ formData, setFormData ] = useState(initialState)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
   const menuItems = useSelector((store) => store.menuItemsReducer.menuItems);
-  console.log(menuItems)
+  
   const menuItem = menuItems.find((menuItem) => menuItem.id === parseInt(id));
-  console.log(menuItem)
+  
 
 
   useEffect(() => {
@@ -49,8 +50,6 @@ const EditMenuItem = ({ loading }) => {
     }
   }, [menuItem]);
 
-  
-
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(editMenuItem(id, formData));
@@ -65,45 +64,50 @@ const EditMenuItem = ({ loading }) => {
   };
 
   return (
-    <div>
-      <h2>Edit Menu Item</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="write">
+      <h2 className="writeTitle">Edit Menu Item</h2>
+      <br/>
+      <form className='writeForm' onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Name</label>
+          {/* <label htmlFor="name">Name</label> */}
           <input
             type="text"
             name="name"
             id="name"
             placeholder="Name"
+            className="writeInput"
             value={formData.name}
             onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="description">Description</label>
-          <textarea
+          {/* <label htmlFor="description">Description</label> */}
+          <input
             name="description"
             id="description"
+            className="writeInput"
             value={formData.description}
             onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="price">Price</label>
+          {/* <label htmlFor="price">Price</label> */}
           <input
             type="number"
             name="price"
+            className="writeInput"
             value={formData.price}
             onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="category">Category:</label>
+          {/* <label htmlFor="category">Category:</label> */}
             <input
               type="text"
               id="category"
               name='category'
               placeholder='category'
+              className="writeInput"
               value={ formData.category }
               onChange={ handleChange }
             />
@@ -113,7 +117,8 @@ const EditMenuItem = ({ loading }) => {
             <input
               type="checkbox"
               id="isVegetarian"
-              name='isVegetarian'
+              name='is_vegetarian'
+              className="writeTitle"
               checked={formData.is_vegetarian}
               onChange={ handleChange }
             />
@@ -123,13 +128,14 @@ const EditMenuItem = ({ loading }) => {
             <input
               type="checkbox"
               id="isGlutenFree"
-              name='isGlutenFree'
+              name='is_gluten_free'
+              className="writeTitle"
               checked={formData.is_gluten_free}
               onChange={ handleChange }
             />
         </div>
-
-        <button type="submit">Save</button>
+        <br/>
+        <button className="writeSubmit" type="submit">Save</button>
       </form>
     </div>
   );

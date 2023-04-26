@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors } from '../actions/errorActions';
 import { loginUser } from '../actions/userActions';
-// import './login.css';
+import './login.css'
 
 const Login = ({loading}) => {
   const [username, setUsername] = useState('');
@@ -25,37 +25,37 @@ const Login = ({loading}) => {
   const handleSubmit = event => {
     event.preventDefault();
     const user = { username, password }
-
     dispatch(loginUser(user, navigate))
   }
 
   return (
-    <form onSubmit={ handleSubmit }>
-    <h1>Login</h1>
-    <div>
-      <label htmlFor="username">Username: </label>
-      <input 
-        type="text" 
-        name="username" 
-        id="username"
-        value={ username }
-        onChange={ e => setUsername(e.target.value) }
-        required={true}
-       />
+    <div className="login">
+      <span className='loginTitleLabel'>LOGIN</span>
+      <form className='loginForm' onSubmit={ handleSubmit }>
+        <label htmlFor="username">Username: </label>
+        <input 
+          type="text" 
+          name="username" 
+          id="username"
+          className="loginInput"
+          value={ username }
+          onChange={ e => setUsername(e.target.value) }
+          required={true}
+          autoFocus={ true }
+        />
+        <label htmlFor="password">Password: </label>
+        <input 
+          type="password"
+          name="password" 
+          id="password"
+          className="loginInput"
+          value={ password }
+          onChange={ e => setPassword(e.target.value) }
+          required={true}
+        />
+      <input className="loginButton" type="submit" value="Login" />
+      </form>
     </div>
-    <div>
-      <label htmlFor="password">Password: </label>
-      <input 
-        type="password"
-        name="password" 
-        id="password"
-        value={ password }
-        onChange={ e => setPassword(e.target.value) }
-        required={true}
-       />
-    </div>
-    <input type="submit" value="Login" />
-  </form>
   );
 };
 

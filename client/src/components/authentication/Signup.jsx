@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { clearErrors } from '../actions/errorActions'
 import { useDispatch, useSelector } from 'react-redux';
 import { signupUser } from '../actions/userActions';
-import '../../styles/signup.css'
+import './signup.css'
 
 const Signup = ({ loading }) => {
   const { loggedIn } = useSelector(store => store.usersReducer );
@@ -36,7 +36,7 @@ const Signup = ({ loading }) => {
       <span className='signupTitle'>CREATE ACCOUNT</span>
     
       <form className='signupForm' onSubmit={ handleSubmit }>
-        <div>
+  
           <label htmlFor="username">Username: </label>
           <input
             type="text" 
@@ -48,8 +48,8 @@ const Signup = ({ loading }) => {
             onChange={ e => setUsername(e.target.value)}
             autoFocus={ true }
           />  
-        </div>
-      <div>
+    
+    
         <label htmlFor="password">Password: </label>
         <input
           type="password"
@@ -60,8 +60,8 @@ const Signup = ({ loading }) => {
           value={ password }
           onChange={ e => setPassword(e.target.value)}
         />
-      </div>
-      <div>
+      
+    
         <label htmlFor="email">Email: </label>
           <input
             type="email"
@@ -72,8 +72,8 @@ const Signup = ({ loading }) => {
             value={ email }
             onChange={ e => setEmail(e.target.value)}
           />
-      </div>
-      <div>
+      
+    
         <label htmlFor="role">Role: </label>
           <select
             name="role"
@@ -86,7 +86,7 @@ const Signup = ({ loading }) => {
             <option value="customer">Customer</option>
             <option value="restaurant_owner">Restaurant Owner</option>
           </select>
-      </div>
+          <br />
         <input className="signupButton" type="submit" value="Create Account"/>
       </form>
     </div>

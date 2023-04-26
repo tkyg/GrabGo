@@ -4,13 +4,14 @@ import RestaurantCard from './RestaurantCard'
 import { useDispatch } from 'react-redux'
 import { loadRestaurants } from '../actions/restaurantActions'
 import { useNavigate } from 'react-router-dom'
+import '../../styles/restaurantList.css'
 
 const RestaurantList = ({ loading }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const { loggedIn } = useSelector(store => store.usersReducer)
   const restaurants = useSelector(store => store.restaurantsReducer.restaurants)
-  console.log(restaurants)
+ 
 
   useEffect(() => {
     if(!loading && !loggedIn) {
@@ -30,8 +31,15 @@ const RestaurantList = ({ loading }) => {
   : null;
   
   return (
-    <div>
-      {restaurantList}
+    <div >
+      <div className='restaurantHeaders'>
+        <div className='restaurantHeaderLeft'>Restaurant Name</div>
+        <div className='restaurantHeaderCenter'>Category</div>
+        <div className='restaurantHeaderRight'>Description</div>
+        </div>
+      <div>
+        {restaurantList}
+      </div>   
     </div>
   )
 }

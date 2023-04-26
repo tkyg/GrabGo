@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { editRestaurant } from '../actions/restaurantActions'
 import { clearErrors } from '../actions/errorActions'
+import "../../styles/restaurantForm.css" 
 
 const RestaurantEdit = ({ loading }) => {
   
@@ -61,15 +62,16 @@ const RestaurantEdit = ({ loading }) => {
   }
   
   return (
-    <div>
-     <h3>Edit Restaurant</h3>
-      <form onSubmit={ handleSubmit }>
+    <div className="write">
+     <h3 className="writeTitle">Edit Restaurant</h3>
+      <form className='writeForm' onSubmit={ handleSubmit }>
         <div>
           <input
             type="text"
             name="name"
-             id="name"
+            id="name"
             placeholder="Name"
+            className="writeInput"
             autoFocus={true}
             value={ formData.name }
             onChange={ handleChange }
@@ -80,6 +82,7 @@ const RestaurantEdit = ({ loading }) => {
             type="text"
             name="address"
             placeholder="Address"
+            className="writeInput"
             value={ formData.address }
             onChange={ handleChange }
           />
@@ -89,6 +92,7 @@ const RestaurantEdit = ({ loading }) => {
             type="text"
             name="zip_code"
             placeholder="ZipCode"
+            className="writeInput"
             value={ formData.zip_code }
             onChange={ handleChange }
           />
@@ -98,6 +102,7 @@ const RestaurantEdit = ({ loading }) => {
             type="text"
             name="phone_number"
             placeholder="PhoneNumber"
+            className="writeInput"
             value={ formData.phone_number }
             onChange={ handleChange }
           />
@@ -106,7 +111,8 @@ const RestaurantEdit = ({ loading }) => {
           <input
             type="text"
             name="category"
-            placeholder="Category"         
+            placeholder="Category"
+            className="writeInput"         
             value={ formData.category }
             onChange={ handleChange }
           />
@@ -115,12 +121,13 @@ const RestaurantEdit = ({ loading }) => {
           <input
             type="text"
             name="description"
-            placeholder="Description"          
+            placeholder="Description"
+            className="writeInput"          
             value={ formData.description }
             onChange={ handleChange }
           />
         </div>
-        <input type="submit" value="Update Restaurant" />
+        <input className="writeSubmit" type="submit" value="Update Restaurant" />
       </form>
     </div>
   )

@@ -1,0 +1,38 @@
+.header{
+  margin-top: 20px;
+}
+
+.headerTitle{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 160px;
+  /* font-family: 'Ultra'; */
+  /* font-family: 'Abel', sans-serif; */
+  font-weight: 500;
+  /* font-family: 'Aboreto', cursive; */
+  /* color: #444; */
+  /* color: rgb(250, 28, 28); */
+  color: rgb(250, 74, 43)
+  /* background-color: rgb(255, 255, 93); */
+  
+}
+
+.headerImg{
+  width: 100%;
+  height: 250px;
+
+  margin-top: 80px;
+  object-fit: cover;
+}
+/* .headerTitleSm{
+  position: absolute;
+  top: 18%;
+  font-size: 20px;
+} */
+.headerTitleLg{
+  /* position: absolute; */
+  top: 5%;
+  /* font-size: 100px; */
+}

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors } from '../actions/errorActions';
 import { addMenuItems } from '../actions/menuItemsActions'
+import "../../styles/restaurantForm.css" 
 
 const MenuItemsForm = ({ loading, restaurantId }) => {
   const initialState = {
@@ -43,50 +44,54 @@ const MenuItemsForm = ({ loading, restaurantId }) => {
   }
 
   return (
-    <div>
-      <h2>Menu Item Form</h2>
+    <div className="write">
+      <h2 className="writeTitle">Menu Item Form</h2>
       {loading && <p>Loading...</p>}
         {!loading && (
-          <form onSubmit={handleSubmit}>
+          <form className='writeForm' onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="name">Name:</label>
+            {/* <label htmlFor="name">Name:</label> */}
             <input
               type="text"
               name="name"
               id="name"
               placeholder="Name"
+              className="writeInput"
               value={ formData.name }
               onChange={ handleChange }
             />
           </div>
           <div>
-            <label htmlFor="description">Description:</label>
-            <textarea
+            {/* <label htmlFor="description">Description:</label> */}
+            <input
               id="description"
               name='description'
               placeholder='Description'
+              className="writeInput"
               value={ formData.description }
               onChange={ handleChange }
             />
           </div>
           <div>
-            <label htmlFor="price">Price:</label>
+            {/* <label htmlFor="price">Price:</label> */}
             <input
               type="number"
               id="price"
               name='price'
               placeholder='price'
+              className="writeInput"
               value={ formData.price }
               onChange={ handleChange }
             />
           </div>
           <div>
-            <label htmlFor="category">Category:</label>
+            {/* <label htmlFor="category">Category:</label> */}
             <input
               type="text"
               id="category"
               name='category'
               placeholder='Category'
+              className="writeInput"
               value={ formData.category }
               onChange={ handleChange }
             />
@@ -96,7 +101,8 @@ const MenuItemsForm = ({ loading, restaurantId }) => {
             <input
               type="checkbox"
               id="isVegetarian"
-              name='isVegetarian'
+              name='is_vegetarian'
+              className="writeTitle"
               checked={formData.is_vegetarian}
               onChange={ handleChange }
             />
@@ -106,12 +112,13 @@ const MenuItemsForm = ({ loading, restaurantId }) => {
             <input
               type="checkbox"
               id="isGlutenFree"
-              name='isGlutenFree'
+              name='is_gluten_free'
+              className="writeTitle"
               checked={formData.is_gluten_free}
               onChange={ handleChange }
             />
           </div>
-          <button type="submit">Save</button>
+          <button className="writeSubmit" type="submit">Save</button>
         </form>
       )}
     </div>

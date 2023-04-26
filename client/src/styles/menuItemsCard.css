@@ -1,0 +1,29 @@
+.singleMenuItem{
+  margin: 10px
+}
+.singleMenuItemEdit{
+  float: right;
+  font-size: 13px;
+  color: teal;
+  background-color: white;
+  margin: 5px;
+  padding: 0;
+}
+
+.singleMenuItemDelete{
+  float: right;
+  font-size: 13px;
+  color: salmon;
+  margin: 5px;
+  padding: 0;
+}
+
+.singleMenuItemIcon{
+  margin-left: 5px;
+  cursor: pointer;
+}
+.menuItemFont{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  /* font-weight: bold; */
+  font-size: 18px;
+}

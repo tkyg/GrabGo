@@ -1,0 +1,74 @@
+
+.top{
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  /* font-family: 'Josefin Sans', sans-serif; */
+  font-family: 'Abel', sans-serif;
+  font-weight: 400;
+  z-index: 999;
+  text-decoration: none;
+}
+
+
+.topRight{
+  flex: 8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  /* background-color: tomato; */
+}
+
+.topCenter{
+  flex: 8;
+  color: tomato;
+}
+
+/* .topIcon{
+  font-size: 20px;
+  margin-right: 10px;
+  color: #444;
+  cursor: pointer;
+} */
+
+.topList{
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: tomato;
+}
+
+.topListItem{
+  margin-right: 20px;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+  /* textDecoration: "none" */
+}
+
+.topRightList{
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+  padding: 10px;
+  list-style: none;
+  color: teal;
+  font-weight: bolder;
+}
+
+.logoutButton{
+  /* background-color: rgb(187, 186, 185); */
+  background-color: tomato;
+  border: none;
+  color: white;
+  padding: 5px;
+  border-radius: 6px;
+  list-style: none;
+}

@@ -53,7 +53,7 @@ export const loginUser = (user, navigate) => {
           }
           dispatch(action)
           dispatch(clearErrors())
-          navigate("/restaurants")
+          navigate("/")
         }
       })
   }
@@ -79,7 +79,7 @@ export const signupUser = (user, navigate) => {
             type: "ADD_USER",
             payload: data
           })
-          navigate("/restaurants")
+          navigate("/")
         }
       })
   }

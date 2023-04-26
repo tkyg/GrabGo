@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import '../../styles/restaurantCard.css'
+
 
 
 const RestaurantCard = ({restaurant}) => {
@@ -8,14 +10,14 @@ const RestaurantCard = ({restaurant}) => {
 
   
   return (
-    <div>
-      <h3>
+    <div className='cardStyle'>
+      <h3 className='restaurantHeaderRight'>
         <NavLink style={{textDecoration: "none"}} to={`/restaurants/${restaurant.id}`}>
-          Restaurant Name: {restaurant.name}
+          {restaurant.name}
         </NavLink>
       </h3>
-        <p>{restaurant.category}</p>
-        <p>{restaurant.description}</p>
+        <p className='restaurantHeaderCenter'>{restaurant.category}</p>
+        <p className='restaurantHeaderLeft'>{restaurant.description}</p>
       <br />
     </div>
   )

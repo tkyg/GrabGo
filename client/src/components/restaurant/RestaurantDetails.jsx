@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import { useParams, useNavigate, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteRestaurant, loadSingleRestaurant } from '../actions/restaurantActions'
-import MenuItemsForm from '../menuItems/MenuItemsForm';
-import { addMenuItems } from '../actions/menuItemsActions';
-import MenuItemsList from '../menuItems/MenuItemsList';
+// import MenuItemsForm from '../menuItems/MenuItemsForm';
+// import { addMenuItems } from '../actions/menuItemsActions';
+// import MenuItemsList from '../menuItems/MenuItemsList';
+import '../../styles/restaurantDetails.css'
 
 
 const RestaurantDetails = ({ loading }) => {
@@ -42,36 +43,63 @@ const RestaurantDetails = ({ loading }) => {
     <>
       {singleRestaurant && (
         <>
-          <div>
-            <h3>{singleRestaurant.name}</h3>
-            <p>{singleRestaurant.description}</p>
+          <div className='singleRestaurant'>
+          <div className="singleRestaurantWrapper">
+            <h1 className='writeTitle'>{singleRestaurant.name}</h1>
             <br/>
-            <p>Address: {singleRestaurant.address}</p>
-            <p>Zip Code: {singleRestaurant.zip_code}</p>
-            <p>Contact Us At: {singleRestaurant.phone_number}</p>
-            <p>
-            {loggedIn && isOwner && (
-              <button onClick={() => navigate(`/restaurants/${singleRestaurant.id}/edit`, { restaurant: singleRestaurant })}>Edit</button>
-              )}
-            </p>
-              <p>
+            <p className='restaurantFont'>{singleRestaurant.description}</p>
+            <br/>
+            <p className='restaurantFont'>Address: {singleRestaurant.address}</p>
+            <p className='restaurantFont'>Zip Code: {singleRestaurant.zip_code}</p>
+            <p className='restaurantFont'>Contact Us At: {singleRestaurant.phone_number}</p>
+            <br />
+            <div>
               {loggedIn && isOwner && (
-                <button onClick={handleDelete}>Delete Restaurant</button>
+                <button className='button' onClick={() => 
+                  navigate(`/restaurants/${singleRestaurant.id}/edit`, { 
+                    restaurant: singleRestaurant 
+                  })
+                }>
+                  <div className="singleRestaurantEdit">
+                    <i className="singleRestaurantIcon fa-regular fa-pen-to-square"> 
+                      Edit Restaurant
+                    </i>
+                  </div>
+                </button>
               )}
-              </p>
+            </div>
+            
+            <div className='singleRestaurantDelete'>
+              {loggedIn && isOwner && (
+                <i className="singleRestaurantIcon fa-regular fa-trash-can" onClick={handleDelete}>Delete Restaurant</i>
+              )}
+            </div>
+          </div>
           </div>
           <br/>
+          <br/>
+
           <div>
-            <h2>Menu</h2>
-            {loggedIn && isOwner && (
-              <NavLink to={'/menu_items'}>Update Menu</NavLink>
-            )}
+            <h2 className='writeTitle'>Menu</h2>
+            <div className="singleRestaurantUpdate">
+              {loggedIn && isOwner && (
+                <NavLink style={{textDecoration: "none"}} to={'/menu_items'}>
+                  <div className='singleMenuEdit'>
+                    <i className="singleBlogIcon fa-regular fa-pen-to-square"> 
+                      Update Menu
+                    </i>
+                  </div>
+                </NavLink>
+              )}
+            </div>
             {singleRestaurant.menu_items.map((menuItem) => (
               <div key={menuItem.id}>
-                <h3>{menuItem.name} - ${menuItem.price}</h3>
-                <p>{menuItem.description}</p>
-                <p>{menuItem.is_vegetarian ? 'Vegetarian' : 'Non-Vegetarian'}</p>
-                <p>{menuItem.is_gluten_free ? 'Gluten-Free' : 'Non-Gluten-Free'}</p>
+                <h3 className='restaurantFontOne'>{menuItem.name} - ${menuItem.price}</h3>
+                <p className='restaurantFont'>{menuItem.description}</p>
+                <p className='restaurantFont'>{menuItem.category}</p>
+                <p className='restaurantFont'>{menuItem.is_vegetarian ? 'Vegetarian' : 'Non-Vegetarian'}</p>
+                <p className='restaurantFont'>{menuItem.is_gluten_free ? 'Gluten-Free' : 'Non-Gluten-Free'}</p>
+                
                 <br/>
               </div>
             ))}

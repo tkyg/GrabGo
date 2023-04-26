@@ -5,7 +5,9 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { loadMenuItems } from '../actions/menuItemsActions';
 import MenuItemsCard from './MenuItemsCard';
 import MenuItemsForm from './MenuItemsForm';
-import { loadSingleRestaurant } from '../actions/restaurantActions';
+// import { loadSingleRestaurant } from '../actions/restaurantActions';
+import '../../styles/restaurantForm.css'
+import '../../styles/restaurantDetails.css'
 
 const MenuItemsList = ({ loading }) => {
   // const [menuItemsList, setMenuItemsList] = useState([]);
@@ -46,38 +48,41 @@ const MenuItemsList = ({ loading }) => {
 
   return (
     <div>
-      <h3>Menu List</h3>
+      <h3 className='writeTitle'>Menu</h3>
       <>
-      {loggedIn && isOwner && (
-        <button onClick={handleShowForm}>Add Menu Item</button>
-      )}
-      
-      {showForm && (
-        <MenuItemsForm
-          loading={loading}
-          restaurantId={singleRestaurant.id}
-          menuItem={selectedMenuItem}
-          onHideForm={handleHideForm}
-        />
-      )}
+        {loggedIn && isOwner && (
+          <i className='singleRestaurantIcon fa-solid fa-plus' style={{color: 'teal' }}onClick={handleShowForm}>
+            Add Menu Item
+          </i>
+        )}
+        {showForm && (
+          <MenuItemsForm
+            loading={loading}
+            restaurantId={singleRestaurant.id}
+            menuItem={selectedMenuItem}
+            onHideForm={handleHideForm}
+          />
+        )}
       </>
       <br/>
       <br/>
-      
-      {menuItemsList}
-      <div><NavLink to={`/restaurants`}>Form Complete, back to Restaurants</NavLink></div>
+        {menuItemsList}
+      <br />
+      <div>
+        <NavLink to={`/restaurants`}>
+          <div className='restaurantReturn'>
+            <i className="fa-solid fa-arrow-left">
+              Back to Restaurants
+            </i>
+          </div>
+        </NavLink>
+      </div>
     </div>
   );
 };
 export default MenuItemsList
-  {/* {filteredMenuItems.map((menuItem) => (
-        <div key={menuItem.id}>
-          <h4>{menuItem.name} - {menuItem.price}</h4>
-          <p>{menuItem.description}</p>
-          <p>{menuItem.is_gluten_free}</p>
-          <p>{menuItem.is_vegetarian}</p>
-        </div>
-      ))} */}
+
+
 
   // return (
   //   <div>
