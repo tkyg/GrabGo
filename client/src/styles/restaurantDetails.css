@@ -25,6 +25,13 @@
   font-size: 20px;
   margin-bottom: 1%;
 }
+.restaurantFontTwo{
+  /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* font-weight: bold; */
+  font-size: 14px;
+  
+}
 .restaurantFont{
   /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

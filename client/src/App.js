@@ -17,6 +17,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import MenuItemsList from './components/menuItems/MenuItemsList';
 import Footer from './components/footer/Footer';
+import ReviewList from './components/reviews/ReviewList';
 // import { loadRestaurants } from './components/actions/restaurantActions';
 
 
@@ -45,8 +46,10 @@ function App() {
             <Route path="/restaurants/:id" element={ <RestaurantDetails loading = { loading }/> }/>
             <Route path="/restaurants/:id/edit" element={ <RestaurantEdit loading = { loading }/> }/>
             <Route path="/menu_items" element={ <MenuItemsList loading = { loading }/> }/>
+            {/* <Route path="/menu_items/:id" element={ <MenuItemsList loading = { loading }/> }/> */}
             <Route path="/menu_items/new" element={ <MenuItemsForm loading = { loading }/> }/>
             <Route path="/menu_items/:id/edit" element={ <MenuItemsEdit loading = { loading }/> }/>
+            <Route path="/reviews" element={<ReviewList loading = { loading }/>}/>
           </Routes>
           }
           <Footer />

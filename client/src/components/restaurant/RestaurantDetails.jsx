@@ -6,31 +6,37 @@ import { deleteRestaurant, loadSingleRestaurant } from '../actions/restaurantAct
 // import { addMenuItems } from '../actions/menuItemsActions';
 // import MenuItemsList from '../menuItems/MenuItemsList';
 import '../../styles/restaurantDetails.css'
+import { loadReviews } from '../actions/reviewsActions';
 
 
 const RestaurantDetails = ({ loading }) => {
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const singleRestaurant = useSelector(store => store.restaurantsReducer.singleRestaurant)
+  const reviews = useSelector(store => store.reviewsReducer)
   const { id } = useParams();
   const { currentUser, loggedIn } = useSelector(store => store.usersReducer)
-
+console.log(reviews)
 
   useEffect(() => {
     if(!loading && !loggedIn) {
       navigate('/login')
     } else {
       dispatch(loadSingleRestaurant(id));
+      dispatch(loadReviews())
     }
   }, [loading, loggedIn, navigate, dispatch, id]);
 
-  useEffect(() => {
-    console.log('Single restaurant updated');
-  }, [singleRestaurant]);
+  // useEffect(() => {
+  //   console.log('Single restaurant updated');
+  // }, [singleRestaurant]);
   
 
   // const isOwner = singleRestaurant && singleRestaurant.user.id && currentUser && singleRestaurant.user.id === currentUser.id;
   const isOwner = singleRestaurant && singleRestaurant.user && singleRestaurant.user.id && currentUser && singleRestaurant.user.id === currentUser.id;
+
+  const filteredReviews = reviews.filter(review => review.restaurant.id === singleRestaurant.id);
+  
 
   const handleDelete = () => {
     console.log(singleRestaurant.id)
@@ -95,17 +101,27 @@ const RestaurantDetails = ({ loading }) => {
             {singleRestaurant.menu_items.map((menuItem) => (
               <div key={menuItem.id}>
                 <h3 className='restaurantFontOne'>{menuItem.name} - ${menuItem.price}</h3>
-                <p className='restaurantFont'>{menuItem.description}</p>
+                <p className='restaurantFontTwo'>{menuItem.description}</p>
                 <p className='restaurantFont'>{menuItem.category}</p>
                 <p className='restaurantFont'>{menuItem.is_vegetarian ? 'Vegetarian' : 'Non-Vegetarian'}</p>
-                <p className='restaurantFont'>{menuItem.is_gluten_free ? 'Gluten-Free' : 'Non-Gluten-Free'}</p>
-                
+                <p className='restaurantFont'>{menuItem.is_gluten_free ? 'Gluten-Free' : 'Non-Gluten-Free'}</p>    
                 <br/>
               </div>
             ))}
           </div>
+          <hr/>
+          <div>
+            <h2>Reviews</h2>
+            <br/>
+            {filteredReviews.map(review => (
+              <div key={review.id}>
+                <p>Comment: {review.comment}</p>
+                <p>Rating: {review.rating}</p>
+                <p>User: {review.user.username}</p>
+              </div>
+            ))}
+          </div>
         </>
-
       )}
     </>
   );

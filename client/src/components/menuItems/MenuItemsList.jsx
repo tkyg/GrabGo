@@ -16,7 +16,7 @@ const MenuItemsList = ({ loading }) => {
   const { loggedIn, currentUser } = useSelector(store => store.usersReducer)
   const singleRestaurant = useSelector(store => store.restaurantsReducer.singleRestaurant)
   const menuItems = useSelector(store => store.menuItemsReducer.menuItems)
-  console.log(menuItems)
+  console.log(singleRestaurant)
 
 
   const [showForm, setShowForm] = useState(false);
@@ -44,7 +44,7 @@ const MenuItemsList = ({ loading }) => {
   const isOwner = singleRestaurant && singleRestaurant.user && singleRestaurant.user.id && currentUser && singleRestaurant.user.id === currentUser.id;
 
   const menuItemsList = filteredMenuItems.map((menuItem) => <MenuItemsCard key={menuItem.id} menuItem={menuItem} onEdit={() => handleShowForm(menuItem)}/>)
-  console.log(menuItems)
+  // console.log(menuItems)
 
   return (
     <div>

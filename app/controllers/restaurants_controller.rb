@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  skip_before_action :authenticate_user, only: [:index, :create, :destroy]
+  skip_before_action :authenticate_user, only: [:index, :show, :create, :destroy]
   
   def index
     render json: Restaurant.all, status: :ok

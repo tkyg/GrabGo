@@ -3,12 +3,15 @@ export const loadMenuItems = () => {
     fetch('/menu_items')
     .then(response => response.json())
     .then(data => {
-      const action = { type: "LOAD_MENU_ITEMS", payload: data }
+      const action = { 
+        type: "LOAD_MENU_ITEMS", 
+        payload: data 
+      }
       dispatch(action)
     })
-    .catch(error => {
-      console.log(error) // or dispatch an action to handle the error
-    })
+    // .catch(error => {
+    //   console.log(error) // or dispatch an action to handle the error
+    // })
   }
 }
 
@@ -17,7 +20,10 @@ export const loadSingleMenuItem = (id) => {
   fetch(`/menu_item/${id}`)
       .then(response => response.json())
       .then(data => {
-        const action = { type: "LOAD_SINGLE_MENU_ITEM", payload: data }
+        const action = { 
+          type: "LOAD_SINGLE_MENU_ITEM", 
+          payload: data 
+        }
         dispatch(action)
       })
     }
@@ -25,7 +31,7 @@ export const loadSingleMenuItem = (id) => {
 
 export const editMenuItem = (id, formData, navigate) => {
   return dispatch => {
-    console.log(id)
+    // console.log(id)
     fetch(`/menu_items/${id}`, {
       method: "PATCH",
       headers: {
@@ -36,10 +42,18 @@ export const editMenuItem = (id, formData, navigate) => {
     })
     .then(response => response.json())
     .then(data => {
+      if(data.error){
+        const action = {
+          type: "SET_ERRORS",
+          payload: data.errors
+        }
+        dispatch(action)
+      } else {
       dispatch({
         type: "EDIT_MENU_ITEM",
         payload: data
       })
+    }
     })
   }
 }

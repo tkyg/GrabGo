@@ -12,6 +12,7 @@ puts "Seeding restaurants..."
 Restaurant.destroy_all
 MenuItem.destroy_all
 User.destroy_all
+Review.destroy_all
 
 10.times do
   user = User.new(
@@ -43,6 +44,15 @@ User.destroy_all
           is_gluten_free: Faker::Boolean.boolean,
         )
       end
+
+      review = restaurant.reviews.build(
+        comment: Faker::Restaurant.review,
+        rating: Faker::Number.between(from: 1, to: 5),
+        user: user
+      )
+
+      review.save ? (puts "Created review for #{restaurant.name}") : (puts "Unable to create review for #{restaurant.name}")
+
     else
       puts "Unable to save restaurant #{restaurant.name}"
     end

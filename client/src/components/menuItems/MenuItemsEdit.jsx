@@ -26,18 +26,10 @@ const EditMenuItem = ({ loading }) => {
   
   const menuItem = menuItems.find((menuItem) => menuItem.id === parseInt(id));
   
-
-
   useEffect(() => {
     if (!loading && !loggedIn) {
       navigate('/login')
     }
-    return () => {
-      dispatch(clearErrors())
-    }
-  }, [loading, loggedIn, navigate, dispatch])
-
-  useEffect(() => {
     if (menuItem) {
       setFormData({
         name: menuItem.name,
@@ -48,7 +40,23 @@ const EditMenuItem = ({ loading }) => {
         is_gluten_free: menuItem.is_gluten_free,
       });
     }
-  }, [menuItem]);
+    return () => {
+      dispatch(clearErrors())
+    }
+  }, [loading, loggedIn, navigate, dispatch, menuItem])
+
+  // useEffect(() => {
+  //   if (menuItem) {
+  //     setFormData({
+  //       name: menuItem.name,
+  //       description: menuItem.description,
+  //       price: menuItem.price,
+  //       category: menuItem.category,
+  //       is_vegetarian: menuItem.is_vegetarian,
+  //       is_gluten_free: menuItem.is_gluten_free,
+  //     });
+  //   }
+  // }, [menuItem]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
