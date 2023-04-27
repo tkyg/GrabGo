@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  skip_before_action :authenticate_user, only: [:index, :show, :create, :destroy]
+  skip_before_action :authenticate_user, only: [:index, :show ]
   
   def index
     render json: Restaurant.all, status: :ok
@@ -34,9 +34,9 @@ class RestaurantsController < ApplicationController
   def destroy 
     restaurant = Restaurant.find(params[:id])
     if restaurant
-      restaurant.orders.destroy_all
-    restaurant.reviews.destroy_all
-    restaurant.menu_items.destroy_all
+      # restaurant.orders.destroy_all
+      # restaurant.reviews.destroy_all
+      # restaurant.menu_items.destroy_all
       restaurant.destroy
       head :no_content
     else

@@ -6,7 +6,6 @@ import { clearErrors } from '../actions/errorActions';
 import "../../styles/restaurantForm.css" 
 
 const EditMenuItem = ({ loading }) => {
-
   const initialState = {
     name: '',
     description: '',
@@ -17,11 +16,11 @@ const EditMenuItem = ({ loading }) => {
   }
   
   const { id } = useParams();
-  const { loggedIn } = useSelector(store => store.usersReducer)
   const [ formData, setFormData ] = useState(initialState)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
+  const { loggedIn } = useSelector(store => store.usersReducer)
   const menuItems = useSelector((store) => store.menuItemsReducer.menuItems);
   
   const menuItem = menuItems.find((menuItem) => menuItem.id === parseInt(id));
@@ -74,7 +73,7 @@ const EditMenuItem = ({ loading }) => {
   return (
     <div className="write">
       <h2 className="writeTitle">Edit Menu Item</h2>
-      <br/>
+    <br/>
       <form className='writeForm' onSubmit={handleSubmit}>
         <div>
           {/* <label htmlFor="name">Name</label> */}
@@ -142,7 +141,7 @@ const EditMenuItem = ({ loading }) => {
               onChange={ handleChange }
             />
         </div>
-        <br/>
+      <br/>
         <button className="writeSubmit" type="submit">Save</button>
       </form>
     </div>

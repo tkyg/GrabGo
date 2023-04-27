@@ -6,6 +6,7 @@ const initialState = {
 // april 19
 const usersReducer = (state=initialState, action) => {
   switch(action.type) {
+    
     case "LOAD_USERS":
       // update our users state with the action.payload which points to our data 
       return {

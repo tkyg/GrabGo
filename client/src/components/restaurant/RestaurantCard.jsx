@@ -2,13 +2,9 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import '../../styles/restaurantCard.css'
 
-
-
 const RestaurantCard = ({restaurant}) => {
-
-  // const zipCode = restaurant.zip_code.slice(0, 5);
-
-  
+// const zipCode = restaurant.zip_code.slice(0, 5);
+ 
   return (
     <div className='cardStyle'>
       <h3 className='restaurantHeaderRight'>

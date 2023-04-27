@@ -8,6 +8,7 @@ const initialState = {
 const menuItemsReducer = (state = initialState, action) => {
   console.log("Action dispatched:", action.type);
   switch(action.type){
+    
     case "LOAD_MENU_ITEMS":
       // return action.payload;
       return {
@@ -17,7 +18,10 @@ const menuItemsReducer = (state = initialState, action) => {
       };
 
     case "LOAD_SINGLE_MENU_ITEM":
-      return { ...state, singleMenuItem: action.payload };
+      return { 
+        ...state, 
+        singleMenuItem: action.payload 
+      };
 
     case "EDIT_MENU_ITEM":
       const updatedMenuItemIndex = state.menuItems.findIndex(
@@ -30,7 +34,7 @@ const menuItemsReducer = (state = initialState, action) => {
         menuItems: updatedMenuItems,
       };
 
-      case "ADD_MENU_ITEM":
+    case "ADD_MENU_ITEM":
       const { restaurant_id, ...newMenuItem } = action.payload;
       const updatedRestaurants = state.restaurants.map((restaurant) => {
         if (restaurant.id === restaurant_id) {
@@ -48,14 +52,14 @@ const menuItemsReducer = (state = initialState, action) => {
       };
    
 
-      case "DELETE_MENU_ITEM":
-        const filteredMenuItems = state.menuItems.filter(
-          (menuItem) => menuItem.id !== action.payload
-          );
-          return {
-            ...state,
-            menuItems: filteredMenuItems,
-          };
+    case "DELETE_MENU_ITEM":
+      const filteredMenuItems = state.menuItems.filter(
+        (menuItem) => menuItem.id !== action.payload
+      );
+      return {
+        ...state,
+        menuItems: filteredMenuItems,
+      };
             
     default:
       return state

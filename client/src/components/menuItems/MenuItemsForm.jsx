@@ -18,6 +18,7 @@ const MenuItemsForm = ({ loading, restaurantId }) => {
 
   const [ formData, setFormData ] = useState(initialState);
   const { loggedIn } = useSelector(store => store.usersReducer);
+
   const navigate = useNavigate();
   const dispatch = useDispatch()
 
@@ -121,8 +122,7 @@ const MenuItemsForm = ({ loading, restaurantId }) => {
           <button className="writeSubmit" type="submit">Save</button>
         </form>
       )}
-    </div>
-    
+    </div>    
   )
 }
 

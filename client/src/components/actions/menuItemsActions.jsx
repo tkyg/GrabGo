@@ -9,15 +9,12 @@ export const loadMenuItems = () => {
       }
       dispatch(action)
     })
-    // .catch(error => {
-    //   console.log(error) // or dispatch an action to handle the error
-    // })
   }
 }
 
 export const loadSingleMenuItem = (id) => {
   return dispatch => {
-  fetch(`/menu_item/${id}`)
+    fetch(`/menu_item/${id}`)
       .then(response => response.json())
       .then(data => {
         const action = { 
@@ -49,11 +46,11 @@ export const editMenuItem = (id, formData, navigate) => {
         }
         dispatch(action)
       } else {
-      dispatch({
-        type: "EDIT_MENU_ITEM",
-        payload: data
-      })
-    }
+        dispatch({
+          type: "EDIT_MENU_ITEM",
+          payload: data
+        })
+      }
     })
   }
 }
@@ -74,7 +71,7 @@ export const addMenuItems = (formData, navigate, restaurantId) => {
     })
     .then(response => response.json())
     .then(data => {
-      if(data.errors){
+      if (data.errors) {
         const action = {
           type: "SET_ERRORS",
           payload: data.errors

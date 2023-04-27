@@ -5,20 +5,17 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { loadMenuItems } from '../actions/menuItemsActions';
 import MenuItemsCard from './MenuItemsCard';
 import MenuItemsForm from './MenuItemsForm';
-// import { loadSingleRestaurant } from '../actions/restaurantActions';
 import '../../styles/restaurantForm.css'
 import '../../styles/restaurantDetails.css'
 
 const MenuItemsList = ({ loading }) => {
-  // const [menuItemsList, setMenuItemsList] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate()
+
   const { loggedIn, currentUser } = useSelector(store => store.usersReducer)
   const singleRestaurant = useSelector(store => store.restaurantsReducer.singleRestaurant)
   const menuItems = useSelector(store => store.menuItemsReducer.menuItems)
-  console.log(singleRestaurant)
-
-
+ 
   const [showForm, setShowForm] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
 
@@ -43,17 +40,19 @@ const MenuItemsList = ({ loading }) => {
 
   const isOwner = singleRestaurant && singleRestaurant.user && singleRestaurant.user.id && currentUser && singleRestaurant.user.id === currentUser.id;
 
-  const menuItemsList = filteredMenuItems.map((menuItem) => <MenuItemsCard key={menuItem.id} menuItem={menuItem} onEdit={() => handleShowForm(menuItem)}/>)
-  // console.log(menuItems)
+  const menuItemsList = filteredMenuItems.map((menuItem) => 
+    <MenuItemsCard key={menuItem.id} menuItem={menuItem} 
+    onEdit={() => handleShowForm(menuItem)}
+  />)
 
   return (
     <div>
       <h3 className='writeTitle'>Menu</h3>
       <>
         {loggedIn && isOwner && (
-          <i className='singleRestaurantIcon fa-solid fa-plus' style={{color: 'teal' }}onClick={handleShowForm}>
+          <button className='AddMenuItemButton' onClick={handleShowForm}>
             Add Menu Item
-          </i>
+          </button>
         )}
         {showForm && (
           <MenuItemsForm

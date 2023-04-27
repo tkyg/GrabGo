@@ -1,6 +1,5 @@
-import { setErrors } from "./errorActions"
+// import { setErrors } from "./errorActions"
 
-// this loads all restaurants
 export const loadRestaurants = () => {
   return dispatch => {
     fetch('/restaurants')
@@ -9,9 +8,9 @@ export const loadRestaurants = () => {
       const action = { type: "LOAD_RESTAURANTS", payload: data}
       dispatch(action)
     })
-    .catch(error => {
-      console.log(error) // or dispatch an action to handle the error
-    })
+    // .catch(error => {
+    //   console.log(error) // or dispatch an action to handle the error
+    // })
   }
 }
 
@@ -21,7 +20,10 @@ export const loadSingleRestaurant = (restaurantId) => {
   fetch(`/restaurants/${restaurantId}`)
     .then(response => response.json())
     .then(data => {
-      const action = {type: "LOAD_SINGLE_RESTAURANT", payload: data}
+      const action = {
+        type: "LOAD_SINGLE_RESTAURANT", 
+        payload: data
+      }
       dispatch(action)
     })
   }
@@ -41,10 +43,13 @@ export const addRestaurant = (formData, navigate) => {
     .then(response => response.json())
     .then(data => {
       if(data.errors){
-        dispatch(setErrors(data.errors))
+        // dispatch(setErrors(data.errors))
+        const action = {
+          type: "SET_ERRORS",
+          payload: data.errors
+        }
+        dispatch(action)
       } else {
-        // addMenuItem(data)
-        // dispatch to MenuItemsReducer for adding a MenuItem
         const action = {
           type: "ADD_RESTAURANT",
           payload: data
@@ -69,7 +74,11 @@ export const editRestaurant = (id, formData, navigate) => {
     .then(response => response.json())
     .then(data => {
       if(data.error){
-        dispatch(setErrors(data.error))
+        const action = {
+          type: "SET_ERRORS",
+          payload: data.errors
+        }
+        dispatch(action)
       } else {
         const action = {
           type: "EDIT_RESTAURANT",
@@ -115,4 +124,3 @@ export const deleteRestaurant = (id, navigate) => {
   //   };
   // };
   
-  // this allows me to add a restaurant

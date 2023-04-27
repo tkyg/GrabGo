@@ -74,3 +74,29 @@
   font-weight: 200px;
   color: teal;
 }
+
+.AddMenuItemButton{
+  /* background-color: rgb(187, 186, 185); */
+  background-color: teal;
+  border: none;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.commentBlock{
+  text-align: left;
+}
+.commentFontUser{
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-size: 15px;
+  font-weight: bolder;
+}
+.commentFont{
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-size: 15px;
+}

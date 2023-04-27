@@ -18,26 +18,25 @@ const MenuItemsCard = ({ menuItem }) => {
   return (
     <div className='singleMenuItem'>
       <div className='singleMenuItemWrapper'>
-        <p className='menuItemFont'>{menuItem.name} - $ {menuItem.price}</p>
-        <br/>
+        <p className='menuItemFontTitle'>{menuItem.name} - $ {menuItem.price}</p>
+      <br/>
         <p className='menuItemFont'>{menuItem.description}</p>
         <p className='menuItemFont'>{menuItem.is_vegetarian}</p>
         <p className='menuItemFont'>{menuItem.is_gluten_free}</p>
-        <br/>
-          <NavLink to={`/menu_items/${menuItem.id}/edit`}>
-            <div className='singleMenuItemEdit'>
-              <i className="singleBlogIcon fa-regular fa-pen-to-square">
-                Edit Menu Item
-              </i>
-            </div>
-          </NavLink>
-        </div>
-        <div className='singleMenuItemDelete'>
-          <i className='singleMenuItemIcon fa-regular fa-trash-can' onClick={handleDelete}>Delete Menu Item</i>
-        </div>
-        
-        <br/>
+      <br/>
+        <NavLink to={`/menu_items/${menuItem.id}/edit`}>
+          <div className='singleMenuItemEdit'>
+            <i className="singleBlogIcon fa-regular fa-pen-to-square">
+              Edit
+            </i>
+          </div>
+        </NavLink>
       </div>
+        <div className='singleMenuItemDelete'>
+          <i className='singleMenuItemIcon fa-regular fa-trash-can' onClick={handleDelete}>Delete</i>
+        </div>       
+      <br/>
+    </div>
   )
 }
 

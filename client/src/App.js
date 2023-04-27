@@ -1,4 +1,3 @@
-
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/navbar/NavBar';
@@ -18,7 +17,6 @@ import { useEffect, useState } from 'react';
 import MenuItemsList from './components/menuItems/MenuItemsList';
 import Footer from './components/footer/Footer';
 import ReviewList from './components/reviews/ReviewList';
-// import { loadRestaurants } from './components/actions/restaurantActions';
 
 
 function App() {

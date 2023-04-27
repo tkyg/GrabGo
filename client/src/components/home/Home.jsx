@@ -8,12 +8,10 @@ import './home.css'
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  const { loggedIn, currentUser } = useSelector(store => store.usersReducer)
-  console.log(currentUser)
-  const restaurants = useSelector(store => store.restaurantsReducer.restaurants)
-  console.log(restaurants)
-  
 
+  const { loggedIn, currentUser } = useSelector(store => store.usersReducer)
+  const restaurants = useSelector(store => store.restaurantsReducer.restaurants)
+ 
   useEffect(() => {
     if(!loggedIn) {
       navigate('/login')
@@ -22,7 +20,6 @@ const Home = () => {
   }, [dispatch, loggedIn, navigate])
 
   const userRestaurant = restaurants.filter(restaurant => restaurant.user.id === currentUser.id);
-  console.log(userRestaurant)
   
   if(loggedIn) {
     return (
@@ -44,19 +41,32 @@ const Home = () => {
                 <span>
                   {userRestaurant.map((restaurant) => (
                     <p key={restaurant.id}>
-                      <NavLink style={{textDecoration: "none"}} to={`/restaurants/${restaurant.id}`}>{restaurant.name}</NavLink>
+                      <NavLink 
+                        style={{textDecoration: "none"}} 
+                        to={`/restaurants/${restaurant.id}`}>{restaurant.name}
+                      </NavLink>
                     </p>
                   ))}
                 </span>
                 <br />
                 <p>Click the link below to add more restaurants</p>
-                <p><NavLink style={{textDecoration: "none"}} to='/restaurants/new'>Add New Restaurant</NavLink></p>
+                <p>
+                  <NavLink 
+                  style={{textDecoration: "none"}} 
+                  to='/restaurants/new'>Add New Restaurant
+                  </NavLink>
+                </p>
               </div>
             ) : (
               <>
                 <p>Click on Add A New Restaurant</p>
                 <p>Follow instructions to create your restaurant profile with us.</p>
-                <p><NavLink style={{textDecoration: "none"}} to='/restaurants/new'>Add New Restaurant</NavLink></p>
+                <p>
+                  <NavLink 
+                    style={{textDecoration: "none"}} 
+                    to='/restaurants/new'>Add New Restaurant
+                  </NavLink>
+                </p>
               </>
             )}
           </div>

@@ -7,24 +7,19 @@ import { useNavigate } from 'react-router-dom'
 import '../../styles/restaurantList.css'
 
 const RestaurantList = ({ loading }) => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate()
+
   const { loggedIn } = useSelector(store => store.usersReducer)
   const restaurants = useSelector(store => store.restaurantsReducer.restaurants)
  
-
   useEffect(() => {
     if(!loading && !loggedIn) {
       navigate('/login')
     }
     dispatch(loadRestaurants())
   }, [dispatch, loading, loggedIn, navigate])
-
-  // const restaurants = useSelector(store => store.restaurantsReducer.restaurants)
-
-  // april 19
-
-  // const restaurantList = restaurants.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant}/>)
 
   const restaurantList = restaurants && restaurants.length > 0
   ? restaurants.map((restaurant) => <RestaurantCard key={restaurant.id} restaurant={restaurant}/>)

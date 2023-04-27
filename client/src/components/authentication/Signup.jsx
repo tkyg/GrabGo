@@ -6,14 +6,14 @@ import { signupUser } from '../actions/userActions';
 import './signup.css'
 
 const Signup = ({ loading }) => {
-  const { loggedIn } = useSelector(store => store.usersReducer );
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('');
 
+  const { loggedIn } = useSelector(store => store.usersReducer );
+
   const dispatch = useDispatch()
-  
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -34,22 +34,18 @@ const Signup = ({ loading }) => {
   return (
     <div className='signup'>
       <span className='signupTitle'>CREATE ACCOUNT</span>
-    
       <form className='signupForm' onSubmit={ handleSubmit }>
-  
-          <label htmlFor="username">Username: </label>
-          <input
-            type="text" 
-            name="username" 
-            id="username" 
-            className="signupInput"
-            placeholder='Choose a username..'
-            value={ username } 
-            onChange={ e => setUsername(e.target.value)}
-            autoFocus={ true }
-          />  
-    
-    
+        <label htmlFor="username">Username: </label>
+        <input
+          type="text" 
+          name="username" 
+          id="username" 
+          className="signupInput"
+          placeholder='Choose a username..'
+          value={ username } 
+          onChange={ e => setUsername(e.target.value)}
+          autoFocus={ true }
+        />  
         <label htmlFor="password">Password: </label>
         <input
           type="password"
@@ -60,33 +56,29 @@ const Signup = ({ loading }) => {
           value={ password }
           onChange={ e => setPassword(e.target.value)}
         />
-      
-    
         <label htmlFor="email">Email: </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            className="signupInput"
-            placeholder='Enter your email..'
-            value={ email }
-            onChange={ e => setEmail(e.target.value)}
-          />
-      
-    
+        <input
+          type="email"
+          name="email"
+          id="email"
+          className="signupInput"
+          placeholder='Enter your email..'
+          value={ email }
+          onChange={ e => setEmail(e.target.value)}
+        />
         <label htmlFor="role">Role: </label>
-          <select
-            name="role"
-            id="role"
-            className="signupInput"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-          >
-            <option value="blank">Choose One</option>
-            <option value="customer">Customer</option>
-            <option value="restaurant_owner">Restaurant Owner</option>
-          </select>
-          <br />
+        <select
+          name="role"
+          id="role"
+          className="signupInput"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+        >
+          <option value="blank">Choose One</option>
+          <option value="customer">Customer</option>
+          <option value="restaurant_owner">Restaurant Owner</option>
+        </select>
+        <br />
         <input className="signupButton" type="submit" value="Create Account"/>
       </form>
     </div>

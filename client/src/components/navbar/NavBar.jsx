@@ -5,23 +5,21 @@ import { logoutUser } from '../actions/userActions'
 import './navbar.css'
 
 const NavBar = () => {
-
   const { loggedIn, currentUser} = useSelector(store => store.usersReducer)
  
   const dispatch = useDispatch()
   const navigate = useNavigate()
  
-
- const handleLogout = () => {
+  const handleLogout = () => {
   dispatch(logoutUser(navigate))
- }
+  }
 
- if (loggedIn) {
+  if (loggedIn) {
     return (
       <div className="top">
         <div className="topCenter"></div>
           <ul className="topList">
-            <li className="topListItem"><Link style={{textDecoration: "none"}}to='/'>HOME</Link></li>
+            <li className="topListItem"><Link style={{textDecoration: "none"}} to='/'>HOME</Link></li>
             <li className="topListItem"><Link style={{textDecoration: "none"}} to='/restaurants'>RESTAURANTS</Link></li>           
             <li className="topListItem"><Link style={{textDecoration: "none"}} to='/restaurants/new'>ADD NEW RESTAURANT</Link></li>
           </ul>

@@ -9,8 +9,8 @@ export const loadUsers = (setLoading) => {
         type: "LOAD_USERS",
         payload: data
       }
-      setLoading(false)
       dispatch(action);
+      setLoading(false)
     })
   }
 }
@@ -45,7 +45,12 @@ export const loginUser = (user, navigate) => {
       .then(resp => resp.json())
       .then(data => {
         if(data.errors) {
-          dispatch(setErrors(data.errors));
+          // dispatch(setErrors(data.errors));
+          const action = {
+            type: "SET_ERRORS",
+            payload: data.errors
+          }
+          dispatch(action)
         } else {
           const action = {
             type: "LOGIN_USER",
@@ -69,7 +74,12 @@ export const signupUser = (user, navigate) => {
       .then(resp => resp.json())
       .then(data => {
         if(data.errors) {
-          dispatch(setErrors(data.errors));
+          const action = {
+            type: "SET_ERRORS",
+            payload: data.errors
+          }
+          dispatch(action)
+          // dispatch(setErrors(data.errors));
         } else {
           dispatch({
             type: "LOGIN_USER",
@@ -84,21 +94,20 @@ export const signupUser = (user, navigate) => {
       })
   }
 }
+
 export const logoutUser = (navigate) => {
   return (dispatch) => {
     console.log("Before dispatching LOGOUT_USER action");
     fetch('/logout', { method: "DELETE" })
-      .then(response => {
-        
-          dispatch({ 
-            type: 'LOGOUT_USER' 
-          });
-          console.log("After dispatching LOGOUT_USER action");
-          navigate('/login')
-        
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    .then(response => {
+      dispatch({ 
+        type: 'LOGOUT_USER' 
+      });
+      console.log("After dispatching LOGOUT_USER action");
+      navigate('/login')       
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 }

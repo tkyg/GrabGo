@@ -5,8 +5,7 @@ import { editRestaurant } from '../actions/restaurantActions'
 import { clearErrors } from '../actions/errorActions'
 import "../../styles/restaurantForm.css" 
 
-const RestaurantEdit = ({ loading }) => {
-  
+const RestaurantEdit = ({ loading }) => { 
   const initialState = {
     name: "",
     address: "",
@@ -15,13 +14,16 @@ const RestaurantEdit = ({ loading }) => {
     category: "",
     description: ""
   }
+
+  const { id } = useParams()
   
   const { loggedIn, currentUser } = useSelector(store => store.usersReducer)
   const restaurants = useSelector(store => store.restaurantsReducer.restaurants)
-  const [ formData, setFormData ] = useState(initialState)
-  const { id } = useParams()
+  
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  
+  const [ formData, setFormData ] = useState(initialState)
 
   useEffect(() => {
     if(!loading && !loggedIn) {

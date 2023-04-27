@@ -5,9 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors } from '../actions/errorActions'
 import "../../styles/restaurantForm.css" 
 
-
 const RestaurantForm = ({ loading }) => {
-
   const initialState = {
     name: "",
     address: "",
@@ -19,6 +17,7 @@ const RestaurantForm = ({ loading }) => {
 
   const [ formData, setFormData ] = useState(initialState);
   const { loggedIn } = useSelector(store => store.usersReducer);
+
   const navigate = useNavigate();
   const dispatch = useDispatch()
 
@@ -33,7 +32,6 @@ const RestaurantForm = ({ loading }) => {
 
   const handleChange = event => {
     const { name, value } = event.target;
-    console.log(value)
     // dispatch(addRestaurant(formData, navigate))
     setFormData({
       ...formData,
@@ -49,7 +47,7 @@ const RestaurantForm = ({ loading }) => {
   return (
     <div className="write">
       <h3 className="writeTitle">Please Fill in you Restaurant Details</h3>
-      <br/>
+    <br/>
       <form className='writeForm' onSubmit={ handleSubmit }>
         <div>
           <input
@@ -113,7 +111,7 @@ const RestaurantForm = ({ loading }) => {
             onChange={ handleChange }
             />
         </div>
-        <br/>
+      <br/>
         <input className="writeSubmit" type="submit" value="Create Restaurant" />
       </form>
     </div>
