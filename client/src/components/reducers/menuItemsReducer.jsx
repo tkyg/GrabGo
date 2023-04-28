@@ -24,23 +24,20 @@ const menuItemsReducer = (state = initialState, action) => {
       };
 
     case "EDIT_MENU_ITEM":
-      const updatedMenuItemIndex = state.menuItems.findIndex(
-        (menuItem) => menuItem.id === action.payload.id
-      );
-      const updatedMenuItems = [...state.menuItems];
-      updatedMenuItems[updatedMenuItemIndex] = action.payload;
       return {
         ...state,
-        menuItems: updatedMenuItems,
+        menuItems: state.menuItems.map((menuItem) =>
+          menuItem.id === action.payload.id ? action.payload : menuItem
+        ),
       };
 
+
     case "ADD_MENU_ITEM":
-      const { restaurant_id, ...newMenuItem } = action.payload;
       const updatedRestaurants = state.restaurants.map((restaurant) => {
-        if (restaurant.id === restaurant_id) {
+        if (restaurant.id === action.payload) {
           return {
             ...restaurant,
-            menuItems: [...restaurant.menuItems, newMenuItem],
+            menuItems: [...restaurant.menuItems, action.payload],
           };
         } else {
           return restaurant;
@@ -67,3 +64,32 @@ const menuItemsReducer = (state = initialState, action) => {
   }
           
 export default menuItemsReducer;
+
+
+ // case "EDIT_MENU_ITEM":
+    //   const updatedMenuItemIndex = state.menuItems.findIndex(
+    //     (menuItem) => menuItem.id === action.payload.id
+    //   );
+    //   const updatedMenuItems = [...state.menuItems];
+    //   updatedMenuItems[updatedMenuItemIndex] = action.payload;
+    //   return {
+    //     ...state,
+    //     menuItems: updatedMenuItems,
+    //   };
+
+        // case "ADD_MENU_ITEM":
+    //   const { restaurant_id, ...newMenuItem } = action.payload;
+    //   const updatedRestaurants = state.restaurants.map((restaurant) => {
+    //     if (restaurant.id === restaurant_id) {
+    //       return {
+    //         ...restaurant,
+    //         menuItems: [...restaurant.menuItems, newMenuItem],
+    //       };
+    //     } else {
+    //       return restaurant;
+    //     }
+    //   });
+    //   return {
+    //     ...state,
+    //     restaurants: updatedRestaurants,
+    //   };

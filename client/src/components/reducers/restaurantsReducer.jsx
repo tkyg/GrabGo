@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const restaurantsReducer = (state=initialState, action) => {
-  console.log("Action dispatched:", action.type);
+  // console.log("Action dispatched:", action.type);
   switch(action.type){
 
     case "LOAD_RESTAURANTS":
@@ -22,7 +22,6 @@ const restaurantsReducer = (state=initialState, action) => {
         ...state, 
         singleRestaurant: action.payload 
       };
-
 
     case "ADD_RESTAURANT":
       return {

@@ -15,6 +15,9 @@ const MenuItemsList = ({ loading }) => {
   const { loggedIn, currentUser } = useSelector(store => store.usersReducer)
   const singleRestaurant = useSelector(store => store.restaurantsReducer.singleRestaurant)
   const menuItems = useSelector(store => store.menuItemsReducer.menuItems)
+
+  console.log(singleRestaurant)
+  console.log(menuItems)
  
   const [showForm, setShowForm] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);

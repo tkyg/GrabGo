@@ -5,7 +5,10 @@ export const loadRestaurants = () => {
     fetch('/restaurants')
     .then(response => response.json())
     .then(data => {
-      const action = { type: "LOAD_RESTAURANTS", payload: data}
+      const action = { 
+        type: "LOAD_RESTAURANTS", 
+        payload: data
+      }
       dispatch(action)
     })
     // .catch(error => {
@@ -96,8 +99,9 @@ export const deleteRestaurant = (id, navigate) => {
     fetch(`/restaurants/${id}`, {
       method: "DELETE"
     })
+    // .then(response => response.json())
     .then(response => {
-      console.log(response)
+      // console.log(response)
       if(response.ok) {
         const action = {
           type: "DELETE_RESTAURANT",
