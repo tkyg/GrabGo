@@ -365,3 +365,11 @@ troubleshoot:
 
 - [Getting Started with Ruby on Rails on Render](https://render.com/docs/deploy-rails)
 - [Render Databases Guide](https://render.com/docs/databases)
+
+## Authors and Acknowledgment
+
+Sincere thank you to [Enoch Griffith](https://www.linkedin.com/in/enochgriffith), my cohort lead for his constant support and guidance.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
