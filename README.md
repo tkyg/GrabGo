@@ -11,7 +11,7 @@ The second layer involves incorporating customers and delivery persons into the 
 The final layer involves building the chat feature using WebSocket so that the three parties can communicate with each other regarding the order.  
 
 Here is a demonstration of how the application can be navigated through. 
-![Navigation Demo](https://media.giphy.com/media/aSaVNDkYLbnUT1uR7b/giphy.gif)
+![Navigation Demo](https://media.giphy.com/media/csUtFxHISoE61Dcz8h/giphy.gif)
 
 ## Links
 To read my blog titled Error Handling CRUD actions in Rails [Click Here](https://medium.com/@ttenkyong/error-handling-crud-actions-in-rails-5f1cde4b8d79)
