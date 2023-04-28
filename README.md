@@ -1,6 +1,22 @@
 # Project Template: React/Rails API
+# **GrubGo**
 
 ## Description
+GrubGo is a full-stack food delivery application that aims to make ordering food easier for customers. My vision for this application is to allow customers to order food from nearby restaurants, and have it delivered by a delivery person right to their doorstep. To ensure a seamless and hassle-free delivery experience, I plan to incorporate a chat feature using WebSocket that allows customers, delivery persons, and restaurant owners to communicate with each other.
+
+Given the scale of this project and the time constraints, I have divided it into several layers. The first layer involves restaurant owners registering their restaurants and uploading their menu to their account on the application. Restaurant owners are free to update their information and menu whenever they want.
+
+The second layer involves incorporating customers and delivery persons into the application. Customers will be able to place orders, edit orders before submitting them, and write reviews of the restaurants they ordered from. Delivery persons, on the other hand, will have the ability to accept delivery orders and mark them as completed once they have been delivered.
+
+The final layer involves building the chat feature using WebSocket so that the three parties can communicate with each other regarding the order.  
+
+Here is a demonstration of how the application can be navigated through. 
+![Navigation Demo](https://media.giphy.com/media/aSaVNDkYLbnUT1uR7b/giphy.gif)
+
+## Links
+To read my blog titled Error Handling CRUD actions in Rails [Click Here](https://medium.com/@ttenkyong/error-handling-crud-actions-in-rails-5f1cde4b8d79)
+
+For a quick walk-through of my full-stack project and its available features [Click Here](https://youtu.be/9iEAHuSoAX0)
 
 This project is scaffolded so that you can build a React frontend and Rails
 backend together, and easily deploy them to Render.
