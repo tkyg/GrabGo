@@ -14,7 +14,7 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.user = current_user
+    @restaurant.user = @current_user
     if @restaurant.save
       render json: @restaurant, status: :created
     else
@@ -23,24 +23,24 @@ class RestaurantsController < ApplicationController
   end
 
   def update 
-    restaurant = Restaurant.find(params[:id])
-    if restaurant.update(restaurant_params)
-    render json: restaurant, status: :accepted
-    else 
-      render json: { error: restaurant.errors.full_messages }, status: :unprocessable_entity
+    @restaurant = Restaurant.find(params[:id])
+    if @restaurant.user.id == @current_user.id 
+      if @restaurant.update(restaurant_params)
+      render json: @restaurant, status: :accepted
+      else 
+        render json: { error: @restaurant.errors.full_messages }, status: :unprocessable_entity
+      end
     end
   end
 
   def destroy 
-    restaurant = Restaurant.find(params[:id])
-    if restaurant
-      # restaurant.orders.destroy_all
-      # restaurant.reviews.destroy_all
-      # restaurant.menu_items.destroy_all
-      restaurant.destroy
-      head :no_content
-    else
-      render json: { error: "Restaurant not found" }, status: :not_found
+    @restaurant = Restaurant.find(params[:id])
+    if @restaurant.user.id == @current_user.id 
+      if @restaurant.destroy
+        head :no_content
+      else
+        render json: { error: "Unable to delete the restaurant" }, status: :not_found
+      end
     end
   end
 

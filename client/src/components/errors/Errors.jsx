@@ -5,6 +5,9 @@ const Errors = () => {
 
   const errors = useSelector(store => store.errorsReducer)
   
+  // if (errors.length === 0) {
+  //   return null;
+  // }
   const errorList = errors.map((error, index) => <li key={index}>{error}</li>)
 
   return (

@@ -31,13 +31,13 @@ const menuItemsReducer = (state = initialState, action) => {
         ),
       };
 
-
     case "ADD_MENU_ITEM":
+      const { restaurant_id, ...newMenuItem } = action.payload;
       const updatedRestaurants = state.restaurants.map((restaurant) => {
-        if (restaurant.id === action.payload) {
+        if (restaurant.id === restaurant_id) {
           return {
             ...restaurant,
-            menuItems: [...restaurant.menuItems, action.payload],
+            menuItems: [...restaurant.menuItems, newMenuItem],
           };
         } else {
           return restaurant;
@@ -47,7 +47,6 @@ const menuItemsReducer = (state = initialState, action) => {
         ...state,
         restaurants: updatedRestaurants,
       };
-   
 
     case "DELETE_MENU_ITEM":
       const filteredMenuItems = state.menuItems.filter(
@@ -93,3 +92,20 @@ export default menuItemsReducer;
     //     ...state,
     //     restaurants: updatedRestaurants,
     //   };
+
+    // case "ADD_MENU_ITEM":
+    //   const updatedRestaurants = state.restaurants.map((restaurant) => {
+    //     if (restaurant.id === action.payload) {
+    //       return {
+    //         ...restaurant,
+    //         menuItems: [...restaurant.menuItems, action.payload],
+    //       };
+    //     } else {
+    //       return restaurant;
+    //     }
+    //   });
+    //   return {
+    //     ...state,
+    //     restaurants: updatedRestaurants,
+    //   };
+   

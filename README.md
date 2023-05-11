@@ -2,13 +2,20 @@
 # **GrubGo**
 
 ## Description
-GrubGo is a full-stack food delivery application that aims to make ordering food easier for customers. My vision for this application is to allow customers to order food from nearby restaurants, and have it delivered by a delivery person right to their doorstep. To ensure a seamless and hassle-free delivery experience, I plan to incorporate a chat feature using WebSocket that allows customers, delivery persons, and restaurant owners to communicate with each other.
+GrubGo is a comprehensive food delivery web application that aims to make ordering food easier for customers. The project is divided into several phases to allow for a systematic and gradual development of the application. 
 
-Given the scale of this project and the time constraints, I have divided it into several layers. The first layer involves restaurant owners registering their restaurants and uploading their menu to their account on the application. Restaurant owners are free to update their information and menu whenever they want.
+In the current phase, restaurant owners can register their restaurants and upload their menus to the application. This feature allows them to add all the necessary information about their restaurant and menu items, ensuring that customers have access to up-to-date information about the restaurant. 
 
-The second layer involves incorporating customers and delivery persons into the application. Customers will be able to place orders, edit orders before submitting them, and write reviews of the restaurants they ordered from. Delivery persons, on the other hand, will have the ability to accept delivery orders and mark them as completed once they have been delivered.
+In the next phase, I will be adding a customer module to the application. Customers will be able to view the menus of the registered restaurants, choose their desired items, and place an order. 
 
-The final layer involves building the chat feature using WebSocket so that the three parties can communicate with each other regarding the order.  
+Following the customer module, I will be integrating a delivery module into the application. Delivery persons will be able to view the orders placed by the customer and make deliveries to the respective addresses. 
+
+To ensure a seamless delivery experience, I will be introducing a chat feature using WebSocket in the final phase of deployment. This feature will allow the restaurant owner, customer, and delivery person to communicate with each other regarding the order. 
+
+Before the official launch of the website, I will also be integrating a payment system, allowing customers to make payments for their orders online.
+
+Overall, with GrubGo the commitment is to create a user-friendly, comprehensive, and efficient food delivery web application that caters to the needs of all parties involved - restaurant owners, customers, and delivery persons. 
+
 
 Here is a demonstration of how the application can be navigated through. 
 ![Navigation Demo](https://media.giphy.com/media/csUtFxHISoE61Dcz8h/giphy.gif)

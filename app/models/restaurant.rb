@@ -9,4 +9,5 @@ class Restaurant < ApplicationRecord
   validates :address, presence: true
   validates :zip_code, presence: true
   validates :description, presence: true
+  validates :zip_code, length: {is: 5}
 end

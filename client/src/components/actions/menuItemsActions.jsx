@@ -39,7 +39,7 @@ export const editMenuItem = (id, formData, navigate) => {
     })
     .then(response => response.json())
     .then(data => {
-      if(data.error){
+      if(data.errors){
         const action = {
           type: "SET_ERRORS",
           payload: data.errors

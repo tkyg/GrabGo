@@ -9,7 +9,7 @@ const errorsReducer = (state=[], action) => {
       return [];
     
     default:
-      return state
+      return state;
   }
 }
 

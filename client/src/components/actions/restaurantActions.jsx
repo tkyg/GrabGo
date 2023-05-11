@@ -79,7 +79,7 @@ export const editRestaurant = (id, formData, navigate) => {
       if(data.error){
         const action = {
           type: "SET_ERRORS",
-          payload: data.errors
+          payload: data.error
         }
         dispatch(action)
       } else {
