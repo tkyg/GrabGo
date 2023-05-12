@@ -23,7 +23,7 @@ Here is a demonstration of how the application can be navigated through.
 ## Links
 To read my blog titled Error Handling CRUD actions in Rails [Click Here](https://medium.com/@ttenkyong/error-handling-crud-actions-in-rails-5f1cde4b8d79)
 
-For a quick walk-through of my full-stack project and its available features [Click Here](https://youtu.be/9iEAHuSoAX0)
+For a quick walk-through of my full-stack project and its available features [Click Here](https://youtu.be/E22RYWVV-5A)
 
 This project is scaffolded so that you can build a React frontend and Rails
 backend together, and easily deploy them to Render.
